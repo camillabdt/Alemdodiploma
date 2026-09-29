@@ -1,0 +1,9 @@
+services:
+  painel:
+    build: .
+    container_name: painel-egressos
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./app:/app/app
+      - ./data/publico:/app/data/publico

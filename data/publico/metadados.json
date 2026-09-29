@@ -1,0 +1,23 @@
+{
+  "gerado_em": "2026-09-29",
+  "ano_referencia_tempo": 2026,
+  "n_base_analitica": 289,
+  "n_por_curso": {
+    "Ciência da Computação": 146,
+    "Engenharia de Software": 143
+  },
+  "populacao_por_curso": {
+    "Ciência da Computação": 171,
+    "Engenharia de Software": 158
+  },
+  "cobertura_por_curso": {
+    "Ciência da Computação": 0.8538,
+    "Engenharia de Software": 0.9051
+  },
+  "n_municipios_nascimento": 90,
+  "n_ufs_nascimento": 13,
+  "anos_conclusao": [
+    2010,
+    2025
+  ]
+}

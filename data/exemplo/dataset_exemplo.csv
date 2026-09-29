@@ -1,0 +1,281 @@
+ID_Egresso,Curso_de_Graduacao,Ano_de_Conclusao,Periodo_Conclusao,Tempo_desde_Conclusao,Genero,Faixa_Etaria,UF_Nascimento,Regiao_Nascimento,Categoria_Cargo,Tipo_Instituicao,Indicador_Lideranca,Indicador_Progressao,Indicador_Empreendedorismo,Indicador_Mudanca_Area
+X001,Ciência da Computação,2019,2015–2019,7,Masculino,30–34,RS,Sul,Ensino/Pesquisa,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X002,Engenharia de Software,2020,2020–2025,6,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X003,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,SC,Sul,Infraestrutura/DevOps/Qualidade,Sem Informação,0,0,0,0
+X004,Ciência da Computação,2020,2020–2025,6,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X005,Ciência da Computação,2019,2015–2019,7,Masculino,25–29,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,1,0,0,0
+X006,Engenharia de Software,2017,2015–2019,9,Feminino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,1,1,1,0
+X007,Ciência da Computação,2017,2015–2019,9,Masculino,30–34,RS,Sul,Outros em Computação/TI,Sem Informação,0,0,0,0
+X008,Engenharia de Software,2020,2020–2025,6,Masculino,25–29,RS,Sul,Ensino/Pesquisa,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X009,Ciência da Computação,2019,2015–2019,7,Masculino,30–34,RS,Sul,Ensino/Pesquisa,Ensino/Pesquisa,0,0,0,0
+X010,Ciência da Computação,2010,2010–2014,16,Feminino,40 ou mais,RS,Sul,Sem Informação,Empresa Privada de Tecnologia,1,1,1,0
+X011,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,RS,Sul,Sem Informação,Ensino/Pesquisa,0,1,0,0
+X012,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,SC,Sul,Outros em Computação/TI,Sem Informação,0,0,0,0
+X013,Engenharia de Software,2015,2015–2019,11,Feminino,35–39,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,1,0,0,0
+X014,Engenharia de Software,2021,2020–2025,5,Feminino,25–29,RS,Sul,Ensino/Pesquisa,Sem Informação,0,1,0,1
+X015,Engenharia de Software,2015,2015–2019,11,Masculino,30–34,SC,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X016,Engenharia de Software,2022,2020–2025,4,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,1,0,0
+X017,Engenharia de Software,2017,2015–2019,9,Masculino,30–34,SP,Sudeste,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X018,Ciência da Computação,2022,2020–2025,4,Feminino,25–29,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X019,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,SC,Sul,Desenvolvimento de Software,Setor Público,0,0,0,1
+X020,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,RS,Sul,Ensino/Pesquisa,Sem Informação,0,1,0,0
+X021,Engenharia de Software,2015,2015–2019,11,Masculino,35–39,RS,Sul,Dados/IA,Empresa Privada de Tecnologia,0,0,0,0
+X022,Ciência da Computação,2025,2020–2025,1,Masculino,25–29,RS,Sul,Área não relacionada à Computação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X023,Ciência da Computação,2015,2015–2019,11,Masculino,30–34,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,1,0,0,0
+X024,Engenharia de Software,2013,2010–2014,13,Masculino,35–39,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X025,Engenharia de Software,2021,2020–2025,5,Masculino,30–34,SP,Sudeste,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X026,Engenharia de Software,2019,2015–2019,7,Feminino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X027,Ciência da Computação,2024,2020–2025,2,Feminino,25–29,RS,Sul,Área não relacionada à Computação,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X028,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X029,Engenharia de Software,2018,2015–2019,8,Masculino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada de Tecnologia,0,0,0,0
+X030,Ciência da Computação,2025,2020–2025,1,Masculino,20–24,RS,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X031,Ciência da Computação,2016,2015–2019,10,Masculino,30–34,MG,Sudeste,Desenvolvimento de Software,Sem Informação,0,1,0,0
+X032,Ciência da Computação,2020,2020–2025,6,Masculino,25–29,RS,Sul,Produto/UX/Agilidade,Empresa Privada de Tecnologia,0,0,0,0
+X033,Ciência da Computação,2016,2015–2019,10,Feminino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X034,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X035,Engenharia de Software,2016,2015–2019,10,Masculino,35–39,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X036,Ciência da Computação,2011,2010–2014,15,Feminino,35–39,RS,Sul,Desenvolvimento de Software,Sem Informação,0,0,1,0
+X037,Engenharia de Software,2019,2015–2019,7,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,1
+X038,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X039,Ciência da Computação,2024,2020–2025,2,Masculino,25–29,PA,Norte,Dados/IA,Sem Informação,0,0,0,0
+X040,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Área não relacionada à Computação,Sem Informação,0,0,0,1
+X041,Ciência da Computação,2024,2020–2025,2,Masculino,20–24,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,1,0,0,0
+X042,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,RS,Sul,Ensino/Pesquisa,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X043,Engenharia de Software,2020,2020–2025,6,Feminino,30–34,SP,Sudeste,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X044,Ciência da Computação,2017,2015–2019,9,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X045,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,GO,Centro-Oeste,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X046,Engenharia de Software,2022,2020–2025,4,Masculino,25–29,RS,Sul,Produto/UX/Agilidade,Empresa Privada de Tecnologia,1,0,1,0
+X047,Ciência da Computação,2018,2015–2019,8,Masculino,30–34,SC,Sul,Infraestrutura/DevOps/Qualidade,Setor Público,0,0,0,1
+X048,Engenharia de Software,2014,2010–2014,12,Masculino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X049,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada de Tecnologia,1,1,0,0
+X050,Engenharia de Software,2017,2015–2019,9,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X051,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Dados/IA,Ensino/Pesquisa,0,1,0,1
+X052,Ciência da Computação,2015,2015–2019,11,Feminino,35–39,RS,Sul,Área não relacionada à Computação,Empresa Privada de Tecnologia,1,1,0,0
+X053,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,GO,Centro-Oeste,Desenvolvimento de Software,Ensino/Pesquisa,0,1,0,0
+X054,Ciência da Computação,2024,2020–2025,2,Masculino,25–29,PA,Norte,Área não relacionada à Computação,Sem Informação,0,0,0,0
+X055,Ciência da Computação,2014,2010–2014,12,Masculino,35–39,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X056,Ciência da Computação,2014,2010–2014,12,Feminino,35–39,RS,Sul,Área não relacionada à Computação,Empresa Privada não Tecnológica/Outros,0,0,1,0
+X057,Engenharia de Software,2021,2020–2025,5,Masculino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X058,Ciência da Computação,2024,2020–2025,2,Masculino,20–24,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X059,Engenharia de Software,2016,2015–2019,10,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Sem Informação,0,0,1,0
+X060,Engenharia de Software,2018,2015–2019,8,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X061,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Área não relacionada à Computação,Empresa Privada de Tecnologia,0,0,0,1
+X062,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X063,Ciência da Computação,2020,2020–2025,6,Masculino,25–29,PA,Norte,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X064,Engenharia de Software,2015,2015–2019,11,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X065,Ciência da Computação,2010,2010–2014,16,Feminino,40 ou mais,RJ,Sudeste,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,1,0,1
+X066,Ciência da Computação,2015,2015–2019,11,Masculino,35–39,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada de Tecnologia,0,1,0,0
+X067,Engenharia de Software,2015,2015–2019,11,Masculino,35–39,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X068,Ciência da Computação,2022,2020–2025,4,Masculino,25–29,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X069,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,0,0,0
+X070,Ciência da Computação,2020,2020–2025,6,Masculino,25–29,RS,Sul,Ensino/Pesquisa,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X071,Engenharia de Software,2022,2020–2025,4,Masculino,25–29,MG,Sudeste,Dados/IA,Sem Informação,0,1,0,0
+X072,Ciência da Computação,2021,2020–2025,5,Feminino,25–29,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X073,Ciência da Computação,2015,2015–2019,11,Feminino,30–34,RS,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X074,Ciência da Computação,2023,2020–2025,3,Feminino,25–29,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X075,Engenharia de Software,2023,2020–2025,3,Feminino,25–29,RS,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X076,Ciência da Computação,2023,2020–2025,3,Feminino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X077,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,1,0,1,1
+X078,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Ensino/Pesquisa,Sem Informação,0,1,0,0
+X079,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X080,Engenharia de Software,2019,2015–2019,7,Masculino,30–34,SC,Sul,Área não relacionada à Computação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X081,Engenharia de Software,2018,2015–2019,8,Masculino,30–34,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,0,1,1,0
+X082,Ciência da Computação,2019,2015–2019,7,Feminino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,1,0,1,0
+X083,Ciência da Computação,2022,2020–2025,4,Masculino,25–29,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada de Tecnologia,0,0,0,0
+X084,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Ensino/Pesquisa,Empresa Privada não Tecnológica/Outros,1,0,1,0
+X085,Engenharia de Software,2017,2015–2019,9,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,1,0,0,1
+X086,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,SC,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X087,Ciência da Computação,2010,2010–2014,16,Masculino,40 ou mais,RS,Sul,Gestão/Liderança,Sem Informação,0,1,0,0
+X088,Ciência da Computação,2020,2020–2025,6,Feminino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X089,Engenharia de Software,2022,2020–2025,4,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Setor Público,1,1,0,0
+X090,Engenharia de Software,2015,2015–2019,11,Masculino,35–39,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X091,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Área não relacionada à Computação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X092,Engenharia de Software,2019,2015–2019,7,Masculino,30–34,SP,Sudeste,Infraestrutura/DevOps/Qualidade,Ensino/Pesquisa,0,1,0,0
+X093,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Gestão/Liderança,Empresa Privada de Tecnologia,0,0,0,0
+X094,Ciência da Computação,2021,2020–2025,5,Masculino,30–34,RS,Sul,Dados/IA,Empresa Privada de Tecnologia,0,0,0,0
+X095,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,SC,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X096,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada de Tecnologia,0,0,0,0
+X097,Ciência da Computação,2019,2015–2019,7,Feminino,25–29,SC,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,0,0,0
+X098,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Gestão/Liderança,Empresa Privada de Tecnologia,0,0,0,0
+X099,Engenharia de Software,2013,2010–2014,13,Feminino,35–39,RS,Sul,Ensino/Pesquisa,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X100,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,1,1,0
+X101,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,0,0,0
+X102,Ciência da Computação,2023,2020–2025,3,Feminino,25–29,PR,Sul,Desenvolvimento de Software,Sem Informação,0,1,0,0
+X103,Engenharia de Software,2017,2015–2019,9,Masculino,35–39,RS,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X104,Ciência da Computação,2020,2020–2025,6,Masculino,30–34,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X105,Engenharia de Software,2021,2020–2025,5,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,0,0,0
+X106,Engenharia de Software,2024,2020–2025,2,Masculino,20–24,RS,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X107,Engenharia de Software,2021,2020–2025,5,Masculino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada de Tecnologia,0,0,0,0
+X108,Engenharia de Software,2019,2015–2019,7,Feminino,25–29,BA,Nordeste,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X109,Ciência da Computação,2018,2015–2019,8,Feminino,30–34,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X110,Engenharia de Software,2019,2015–2019,7,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,1,1,1,0
+X111,Ciência da Computação,2022,2020–2025,4,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X112,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X113,Engenharia de Software,2020,2020–2025,6,Masculino,30–34,BA,Nordeste,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,1,0,0
+X114,Ciência da Computação,2015,2015–2019,11,Masculino,35–39,RS,Sul,Ensino/Pesquisa,Empresa Privada de Tecnologia,0,0,0,0
+X115,Engenharia de Software,2017,2015–2019,9,Feminino,30–34,RS,Sul,Desenvolvimento de Software,Setor Público,0,1,0,0
+X116,Engenharia de Software,2023,2020–2025,3,Feminino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X117,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,SP,Sudeste,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X118,Ciência da Computação,2012,2010–2014,14,Masculino,35–39,RS,Sul,Dados/IA,Sem Informação,1,1,0,0
+X119,Ciência da Computação,2011,2010–2014,15,Masculino,40 ou mais,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X120,Ciência da Computação,2021,2020–2025,5,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X121,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X122,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X123,Engenharia de Software,2018,2015–2019,8,Masculino,30–34,RS,Sul,Dados/IA,Setor Público,1,0,0,0
+X124,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,1,0,0
+X125,Engenharia de Software,2025,2020–2025,1,Feminino,25–29,RS,Sul,Dados/IA,Empresa Privada de Tecnologia,0,0,0,0
+X126,Engenharia de Software,2016,2015–2019,10,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X127,Ciência da Computação,2016,2015–2019,10,Feminino,35–39,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,1,1,1,0
+X128,Engenharia de Software,2015,2015–2019,11,Masculino,30–34,GO,Centro-Oeste,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X129,Engenharia de Software,2015,2015–2019,11,Masculino,35–39,RS,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X130,Engenharia de Software,2013,2010–2014,13,Masculino,35–39,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X131,Engenharia de Software,2014,2010–2014,12,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X132,Engenharia de Software,2016,2015–2019,10,Masculino,30–34,SP,Sudeste,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X133,Ciência da Computação,2011,2010–2014,15,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,0,0,0
+X134,Engenharia de Software,2021,2020–2025,5,Feminino,25–29,RS,Sul,Gestão/Liderança,Empresa Privada de Tecnologia,0,1,0,0
+X135,Engenharia de Software,2022,2020–2025,4,Masculino,25–29,SP,Sudeste,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X136,Ciência da Computação,2018,2015–2019,8,Masculino,30–34,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X137,Engenharia de Software,2018,2015–2019,8,Masculino,30–34,RS,Sul,Área não relacionada à Computação,Empresa Privada de Tecnologia,0,1,0,0
+X138,Ciência da Computação,2020,2020–2025,6,Masculino,30–34,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada de Tecnologia,0,0,0,0
+X139,Ciência da Computação,2024,2020–2025,2,Masculino,25–29,RS,Sul,Outros em Computação/TI,Ensino/Pesquisa,0,1,0,0
+X140,Ciência da Computação,2024,2020–2025,2,Masculino,25–29,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X141,Engenharia de Software,2013,2010–2014,13,Feminino,35–39,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,0,0,0
+X142,Ciência da Computação,2014,2010–2014,12,Masculino,35–39,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X143,Ciência da Computação,2015,2015–2019,11,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X144,Ciência da Computação,2015,2015–2019,11,Masculino,35–39,PR,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,0,1,0
+X145,Engenharia de Software,2021,2020–2025,5,Masculino,25–29,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X146,Engenharia de Software,2019,2015–2019,7,Feminino,30–34,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,1,0,0,0
+X147,Ciência da Computação,2011,2010–2014,15,Masculino,40 ou mais,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X148,Ciência da Computação,2018,2015–2019,8,Masculino,30–34,RS,Sul,Sem Informação,Empresa Privada de Tecnologia,0,0,1,1
+X149,Engenharia de Software,2021,2020–2025,5,Masculino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X150,Ciência da Computação,2012,2010–2014,14,Masculino,35–39,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,1,1,0
+X151,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,BA,Nordeste,Sem Informação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X152,Ciência da Computação,2011,2010–2014,15,Masculino,35–39,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X153,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X154,Ciência da Computação,2012,2010–2014,14,Masculino,35–39,SP,Sudeste,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,1,1,1,0
+X155,Ciência da Computação,2024,2020–2025,2,Feminino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X156,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,1,0,0,0
+X157,Ciência da Computação,2025,2020–2025,1,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Sem Informação,1,1,0,0
+X158,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X159,Engenharia de Software,2023,2020–2025,3,Feminino,25–29,RS,Sul,Produto/UX/Agilidade,Empresa Privada de Tecnologia,0,1,0,0
+X160,Engenharia de Software,2022,2020–2025,4,Masculino,25–29,GO,Centro-Oeste,Gestão/Liderança,Ensino/Pesquisa,0,1,0,0
+X161,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Dados/IA,Sem Informação,1,1,0,0
+X162,Engenharia de Software,2015,2015–2019,11,Masculino,35–39,RS,Sul,Dados/IA,Empresa Privada de Tecnologia,0,1,0,0
+X163,Ciência da Computação,2020,2020–2025,6,Masculino,30–34,RS,Sul,Dados/IA,Setor Público,1,1,0,0
+X164,Ciência da Computação,2020,2020–2025,6,Masculino,30–34,GO,Centro-Oeste,Gestão/Liderança,Setor Público,0,1,0,0
+X165,Ciência da Computação,2024,2020–2025,2,Masculino,20–24,RS,Sul,Sem Informação,Ensino/Pesquisa,0,0,0,0
+X166,Engenharia de Software,2020,2020–2025,6,Masculino,30–34,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X167,Ciência da Computação,2018,2015–2019,8,Feminino,30–34,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X168,Ciência da Computação,2021,2020–2025,5,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X169,Ciência da Computação,2016,2015–2019,10,Masculino,35–39,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X170,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X171,Ciência da Computação,2019,2015–2019,7,Masculino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X172,Ciência da Computação,2018,2015–2019,8,Masculino,30–34,RS,Sul,Ensino/Pesquisa,Empresa Privada de Tecnologia,0,0,0,0
+X173,Engenharia de Software,2017,2015–2019,9,Masculino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada de Tecnologia,0,0,0,0
+X174,Engenharia de Software,2019,2015–2019,7,Feminino,30–34,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,0,0,0
+X175,Engenharia de Software,2019,2015–2019,7,Masculino,30–34,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X176,Ciência da Computação,2017,2015–2019,9,Masculino,35–39,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X177,Engenharia de Software,2019,2015–2019,7,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,1,1,0,0
+X178,Ciência da Computação,2022,2020–2025,4,Feminino,25–29,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,0,0,1
+X179,Engenharia de Software,2018,2015–2019,8,Masculino,30–34,RS,Sul,Ensino/Pesquisa,Sem Informação,1,0,1,0
+X180,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Dados/IA,Ensino/Pesquisa,0,0,0,0
+X181,Engenharia de Software,2025,2020–2025,1,Feminino,20–24,RS,Sul,Desenvolvimento de Software,Setor Público,0,0,0,0
+X182,Ciência da Computação,2019,2015–2019,7,Masculino,25–29,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X183,Ciência da Computação,2017,2015–2019,9,Feminino,35–39,SC,Sul,Área não relacionada à Computação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X184,Engenharia de Software,2021,2020–2025,5,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X185,Ciência da Computação,2024,2020–2025,2,Masculino,25–29,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada de Tecnologia,0,1,0,0
+X186,Ciência da Computação,2022,2020–2025,4,Masculino,25–29,RS,Sul,Sem Informação,Sem Informação,0,0,0,0
+X187,Ciência da Computação,2023,2020–2025,3,Feminino,25–29,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X188,Ciência da Computação,2020,2020–2025,6,Masculino,25–29,RS,Sul,Ensino/Pesquisa,Empresa Privada de Tecnologia,1,0,0,0
+X189,Ciência da Computação,2021,2020–2025,5,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X190,Ciência da Computação,2016,2015–2019,10,Masculino,30–34,SC,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X191,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X192,Engenharia de Software,2016,2015–2019,10,Masculino,30–34,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X193,Engenharia de Software,2022,2020–2025,4,Masculino,25–29,RS,Sul,Gestão/Liderança,Sem Informação,0,0,0,0
+X194,Ciência da Computação,2024,2020–2025,2,Feminino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X195,Engenharia de Software,2015,2015–2019,11,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,0,0,0
+X196,Ciência da Computação,2021,2020–2025,5,Masculino,30–34,RS,Sul,Ensino/Pesquisa,Empresa Privada de Tecnologia,0,0,0,0
+X197,Ciência da Computação,2012,2010–2014,14,Masculino,40 ou mais,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X198,Ciência da Computação,2022,2020–2025,4,Masculino,25–29,MG,Sudeste,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X199,Ciência da Computação,2012,2010–2014,14,Masculino,35–39,RS,Sul,Área não relacionada à Computação,Ensino/Pesquisa,0,1,0,1
+X200,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X201,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Outros em Computação/TI,Setor Público,0,1,0,0
+X202,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X203,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,0,0,0
+X204,Engenharia de Software,2021,2020–2025,5,Masculino,25–29,RS,Sul,Área não relacionada à Computação,Ensino/Pesquisa,0,0,0,0
+X205,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,SP,Sudeste,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X206,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,RS,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X207,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Dados/IA,Sem Informação,0,0,0,0
+X208,Engenharia de Software,2017,2015–2019,9,Masculino,30–34,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X209,Ciência da Computação,2021,2020–2025,5,Feminino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X210,Engenharia de Software,2014,2010–2014,12,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X211,Ciência da Computação,2021,2020–2025,5,Masculino,25–29,RS,Sul,Área não relacionada à Computação,Empresa Privada não Tecnológica/Outros,0,0,0,1
+X212,Engenharia de Software,2016,2015–2019,10,Masculino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada de Tecnologia,0,1,0,0
+X213,Engenharia de Software,2021,2020–2025,5,Masculino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada de Tecnologia,0,0,0,0
+X214,Ciência da Computação,2020,2020–2025,6,Masculino,30–34,SC,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X215,Engenharia de Software,2020,2020–2025,6,Masculino,25–29,RS,Sul,Sem Informação,Ensino/Pesquisa,0,1,0,0
+X216,Ciência da Computação,2020,2020–2025,6,Masculino,30–34,SC,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X217,Ciência da Computação,2023,2020–2025,3,Feminino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X218,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,RS,Sul,Gestão/Liderança,Empresa Privada de Tecnologia,0,0,0,0
+X219,Ciência da Computação,2019,2015–2019,7,Masculino,30–34,RS,Sul,Produto/UX/Agilidade,Sem Informação,1,1,0,0
+X220,Engenharia de Software,2021,2020–2025,5,Masculino,25–29,SC,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,1,0,0,0
+X221,Ciência da Computação,2025,2020–2025,1,Feminino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X222,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,SP,Sudeste,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,1,0,0,0
+X223,Engenharia de Software,2015,2015–2019,11,Masculino,30–34,RS,Sul,Outros em Computação/TI,Ensino/Pesquisa,0,0,0,0
+X224,Ciência da Computação,2012,2010–2014,14,Masculino,35–39,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X225,Engenharia de Software,2022,2020–2025,4,Masculino,25–29,PA,Norte,Sem Informação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X226,Ciência da Computação,2018,2015–2019,8,Feminino,30–34,RS,Sul,Gestão/Liderança,Empresa Privada de Tecnologia,0,1,0,0
+X227,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X228,Engenharia de Software,2022,2020–2025,4,Masculino,25–29,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,1,0,0,0
+X229,Engenharia de Software,2018,2015–2019,8,Masculino,30–34,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X230,Ciência da Computação,2024,2020–2025,2,Masculino,20–24,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,1
+X231,Ciência da Computação,2023,2020–2025,3,Feminino,25–29,RS,Sul,Área não relacionada à Computação,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X232,Engenharia de Software,2017,2015–2019,9,Masculino,30–34,RS,Sul,Infraestrutura/DevOps/Qualidade,Ensino/Pesquisa,1,1,0,0
+X233,Ciência da Computação,2017,2015–2019,9,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,0,0,0
+X234,Engenharia de Software,2018,2015–2019,8,Feminino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,1,0,0
+X235,Ciência da Computação,2014,2010–2014,12,Feminino,35–39,RS,Sul,Produto/UX/Agilidade,Sem Informação,1,1,0,0
+X236,Engenharia de Software,2015,2015–2019,11,Masculino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,1,0,1,0
+X237,Engenharia de Software,2025,2020–2025,1,Masculino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X238,Ciência da Computação,2019,2015–2019,7,Masculino,25–29,RS,Sul,Outros em Computação/TI,Sem Informação,0,0,0,0
+X239,Ciência da Computação,2018,2015–2019,8,Masculino,30–34,RS,Sul,Ensino/Pesquisa,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X240,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,0,0,0
+X241,Ciência da Computação,2020,2020–2025,6,Masculino,30–34,RS,Sul,Ensino/Pesquisa,Empresa Privada de Tecnologia,0,1,0,0
+X242,Engenharia de Software,2025,2020–2025,1,Feminino,25–29,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X243,Ciência da Computação,2023,2020–2025,3,Feminino,25–29,SP,Sudeste,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X244,Engenharia de Software,2020,2020–2025,6,Feminino,30–34,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X245,Engenharia de Software,2019,2015–2019,7,Feminino,30–34,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X246,Ciência da Computação,2025,2020–2025,1,Masculino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada não Tecnológica/Outros,1,0,0,0
+X247,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X248,Ciência da Computação,2025,2020–2025,1,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,0,0,0
+X249,Engenharia de Software,2015,2015–2019,11,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Setor Público,1,1,1,0
+X250,Ciência da Computação,2024,2020–2025,2,Masculino,20–24,BA,Nordeste,Dados/IA,Ensino/Pesquisa,0,1,0,0
+X251,Ciência da Computação,2021,2020–2025,5,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X252,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X253,Ciência da Computação,2021,2020–2025,5,Masculino,30–34,BA,Nordeste,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X254,Ciência da Computação,2022,2020–2025,4,Masculino,25–29,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada não Tecnológica/Outros,0,0,0,1
+X255,Engenharia de Software,2013,2010–2014,13,Masculino,35–39,RS,Sul,Sem Informação,Sem Informação,0,0,0,0
+X256,Ciência da Computação,2019,2015–2019,7,Masculino,25–29,SP,Sudeste,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X257,Engenharia de Software,2024,2020–2025,2,Masculino,25–29,PR,Sul,Ensino/Pesquisa,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X258,Ciência da Computação,2016,2015–2019,10,Masculino,35–39,RS,Sul,Produto/UX/Agilidade,Ensino/Pesquisa,0,0,0,0
+X259,Ciência da Computação,2019,2015–2019,7,Feminino,25–29,RS,Sul,Gestão/Liderança,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X260,Engenharia de Software,2020,2020–2025,6,Masculino,30–34,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X261,Engenharia de Software,2018,2015–2019,8,Masculino,30–34,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,1,1,1,0
+X262,Ciência da Computação,2025,2020–2025,1,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,0,0,0
+X263,Ciência da Computação,2023,2020–2025,3,Masculino,25–29,RS,Sul,Outros em Computação/TI,Empresa Privada de Tecnologia,0,0,0,0
+X264,Engenharia de Software,2015,2015–2019,11,Feminino,30–34,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X265,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Sem Informação,Setor Público,0,0,0,0
+X266,Engenharia de Software,2024,2020–2025,2,Masculino,20–24,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,1,0,0
+X267,Ciência da Computação,2016,2015–2019,10,Masculino,30–34,RS,Sul,Ensino/Pesquisa,Ensino/Pesquisa,1,0,0,0
+X268,Ciência da Computação,2024,2020–2025,2,Masculino,25–29,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X269,Engenharia de Software,2015,2015–2019,11,Feminino,35–39,PR,Sul,Produto/UX/Agilidade,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X270,Engenharia de Software,2025,2020–2025,1,Masculino,20–24,RS,Sul,Desenvolvimento de Software,Ensino/Pesquisa,0,0,0,0
+X271,Ciência da Computação,2022,2020–2025,4,Masculino,25–29,RS,Sul,Sem Informação,Empresa Privada não Tecnológica/Outros,0,1,0,0
+X272,Ciência da Computação,2022,2020–2025,4,Masculino,25–29,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada de Tecnologia,1,0,0,0
+X273,Ciência da Computação,2012,2010–2014,14,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Empresa Privada de Tecnologia,0,1,0,0
+X274,Engenharia de Software,2025,2020–2025,1,Feminino,20–24,RS,Sul,Desenvolvimento de Software,Empresa Privada não Tecnológica/Outros,0,0,0,0
+X275,Ciência da Computação,2010,2010–2014,16,Feminino,35–39,RS,Sul,Infraestrutura/DevOps/Qualidade,Empresa Privada de Tecnologia,0,0,0,0
+X276,Ciência da Computação,2015,2015–2019,11,Masculino,35–39,RS,Sul,Desenvolvimento de Software,Sem Informação,0,0,0,0
+X277,Ciência da Computação,2013,2010–2014,13,Masculino,35–39,RS,Sul,Outros em Computação/TI,Empresa Privada de Tecnologia,0,1,0,0
+X278,Engenharia de Software,2023,2020–2025,3,Masculino,25–29,PA,Norte,Sem Informação,Empresa Privada não Tecnológica/Outros,1,1,0,0
+X279,Ciência da Computação,2015,2015–2019,11,Masculino,35–39,RS,Sul,Gestão/Liderança,Ensino/Pesquisa,0,1,0,0
+X280,Ciência da Computação,2025,2020–2025,1,Feminino,25–29,RS,Sul,Dados/IA,Empresa Privada não Tecnológica/Outros,0,0,0,0

@@ -1,0 +1,13 @@
+# Dados com identificadores: NUNCA versionar
+data/privado/*
+!data/privado/.gitkeep
+
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# Base real sem identificadores: fica fora do repositório público
+data/publico/dataset_publico.csv
+.streamlit/secrets.toml

@@ -165,3 +165,47 @@ def mapa_uf(tab: pd.DataFrame, geojson: dict, titulo: str) -> go.Figure:
     fig.update_layout(legend_title_text="", title=titulo, height=560, margin=dict(l=0, r=0, t=50, b=0),
                       hovermode="closest")
     return fig
+
+
+def pontos_por_categoria(df: pd.DataFrame, coluna: str, ordem_cursos: list[str], por_linha: int = 24,
+                         min_grupo: int = 5) -> go.Figure:
+    """Gráfico de unidades: cada ponto é um egresso, agrupado por categoria e colorido por curso.
+
+    Mostra contagens agregadas (não identifica pessoas). Categorias com menos de
+    `min_grupo` egressos em algum curso são somadas em "Outras categorias".
+    """
+    cont = df.groupby([coluna, "Curso_de_Graduacao"], observed=True).size().unstack(fill_value=0)
+    cont = cont.reindex(columns=ordem_cursos, fill_value=0)
+    pequenas = cont[(cont > 0).any(axis=1) & ((cont > 0) & (cont < min_grupo)).any(axis=1)].index
+    if len(pequenas):
+        outras = cont.loc[pequenas].sum()
+        cont = cont.drop(pequenas)
+        if outras.sum():
+            cont.loc["Outras categorias"] = outras
+    ordem = cont.sum(axis=1).sort_values(ascending=False).index.tolist()
+    fim = [c for c in ("Outras categorias", "Sem Informação") if c in ordem]
+    cont = cont.loc[[c for c in ordem if c not in fim] + fim]
+
+    xs, ys, cores, textos = [], [], [], []
+    rotulos_y, posicoes_y = [], []
+    y = 0.0
+    for categoria, linha in cont.iterrows():
+        cursos = [c for c in ordem_cursos for _ in range(int(linha[c]))]
+        n_linhas = max(1, -(-len(cursos) // por_linha))
+        topo = y
+        for i, curso in enumerate(cursos):
+            xs.append(i % por_linha)
+            ys.append(topo - (i // por_linha))
+            cores.append(COR_CURSO.get(curso, COR_NEUTRA))
+            textos.append(f"{categoria}<br>{curso}: {int(linha[curso])} egressos")
+        rotulos_y.append(f"{categoria}  <b>{int(linha.sum())}</b>")
+        posicoes_y.append(topo - (n_linhas - 1) / 2)
+        y = topo - n_linhas - 0.9
+    fig = go.Figure(go.Scatter(x=xs, y=ys, mode="markers", text=textos, hoverinfo="text",
+                               marker=dict(size=11, color=cores, line=dict(width=0), symbol="circle")))
+    fig.update_xaxes(visible=False, range=[-0.8, por_linha - 0.2])
+    fig.update_yaxes(tickvals=posicoes_y, ticktext=rotulos_y, showgrid=False, zeroline=False,
+                     ticks="", showline=False, range=[y + 0.4, 0.9], tickfont=dict(size=13.5))
+    fig.update_layout(height=int(22 * (-y) + 40), margin=dict(l=10, r=10, t=10, b=10),
+                      showlegend=False, hovermode="closest")
+    return fig

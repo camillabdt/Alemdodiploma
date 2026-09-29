@@ -12,7 +12,7 @@ TITULO = "Visão geral"
 
 
 def render(df, ctx: Contexto) -> None:
-    st.subheader("Quem são os egressos analisados")
+    st.header("Quem são os egressos analisados")
     n, n_total = len(df), len(ctx.total)
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Egressos no recorte", n, help=f"De {n_total} na base analítica.")

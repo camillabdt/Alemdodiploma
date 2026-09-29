@@ -34,6 +34,7 @@ pytest
 
 | Página | O que mostra | Requisitos |
 | --- | --- | --- |
+| Início | Apresentação do projeto, números-chave, gráfico de pontos (um por egresso), três achados e atalhos | — |
 | Visão geral | Tamanho da base, cobertura, distribuição por período, ano, faixa etária e gênero | RF01 |
 | Inserção profissional | Categoria do cargo atual e tipo de instituição, total e por curso, com teste de associação | RF03, RF04 |
 | Trajetória por curso | Liderança, progressão interna, empreendedorismo e mudança de área por curso; regressão logística controlando o tempo de formado | RF04, RF05 |

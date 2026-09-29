@@ -13,13 +13,14 @@ from app.core import data, estilo  # noqa: E402
 from app.core.config import DADOS_EXEMPLO, DADOS_PUBLICOS, MIN_TOTAL  # noqa: E402
 from app.core.filters import aplicar, barra_lateral  # noqa: E402
 from app.core.privacy import recorte_suficiente  # noqa: E402
-from app.views import geografia, insercao, maturidade, metodologia, relacoes, trajetoria, visao_geral  # noqa: E402
+from app.views import (geografia, inicio, insercao, maturidade, metodologia, relacoes,  # noqa: E402
+                       trajetoria, visao_geral)
 from app.views.base import Contexto  # noqa: E402
 
 st.set_page_config(page_title="Além do Diploma · Egressos UNIPAMPA", page_icon="🎓", layout="wide")
 estilo.aplicar()
 
-PAGINAS = [visao_geral, insercao, trajetoria, maturidade, relacoes, geografia, metodologia]
+PAGINAS = [inicio, visao_geral, insercao, trajetoria, maturidade, relacoes, geografia, metodologia]
 
 
 def _csv_dos_secrets() -> str | None:
@@ -48,6 +49,18 @@ st.sidebar.caption("Egressos de Ciência da Computação e Engenharia de Softwar
 titulo = st.sidebar.radio("Página", [p.TITULO for p in PAGINAS], key="pagina")
 pagina = next(p for p in PAGINAS if p.TITULO == titulo)
 
+# O Streamlit descarta o estado de widgets que não são desenhados numa execução.
+# Como a página inicial não mostra filtros, preservamos os valores escolhidos.
+for chave in [k for k in st.session_state if str(k).startswith("f_")]:
+    st.session_state[chave] = st.session_state[chave]
+
+ctx_base = dict(total=df_total, metadados=metadados, geojson=geojson)
+
+if pagina is inicio:
+    st.sidebar.caption("A página inicial mostra a base completa. Os filtros aparecem nas demais páginas.")
+    inicio.render(df_total, Contexto(**ctx_base, mostrar_tabelas=False), aviso=lambda: estilo.aviso_origem(origem))
+    st.stop()
+
 selecao = barra_lateral(df_total)
 mostrar_tabelas = st.sidebar.toggle("Mostrar tabelas junto aos gráficos", value=False, key="f_tabelas")
 df = aplicar(df_total, selecao)
@@ -58,7 +71,7 @@ st.sidebar.markdown(
     + (f" · {ativos} filtro(s) ativo(s)" if ativos else "")
 )
 
-ctx = Contexto(total=df_total, metadados=metadados, geojson=geojson, mostrar_tabelas=mostrar_tabelas)
+ctx = Contexto(**ctx_base, mostrar_tabelas=mostrar_tabelas)
 
 if pagina is not metodologia and not recorte_suficiente(df):
     st.header(pagina.TITULO)
@@ -68,7 +81,5 @@ if pagina is not metodologia and not recorte_suficiente(df):
     )
     st.stop()
 
-if pagina is visao_geral:
-    estilo.capa(len(df_total))
 estilo.aviso_origem(origem)
 pagina.render(df, ctx)

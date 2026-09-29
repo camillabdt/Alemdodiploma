@@ -51,6 +51,7 @@ O protótipo inicial foi desenvolvido em grupo na disciplina Introdução à Ci�
 
 - Textos de leitura calculados a partir dos dados filtrados, substituindo conclusões e hipóteses fixas que ficavam incorretas quando o usuário aplicava filtros.
 - Tema visual próprio, com cor fixa por curso e paleta segura para daltonismo.
+- Página inicial com apresentação do projeto, números-chave, gráfico de unidades (um ponto por egresso), achados calculados da base e atalhos para as demais páginas.
 
 ### Auditoria (itens 2 e 3 do parecer)
 

@@ -44,9 +44,12 @@ def carregar():
 
 df_total, metadados, geojson, origem = carregar()
 
-st.sidebar.title("Além do Diploma")
-st.sidebar.caption("Egressos de Ciência da Computação e Engenharia de Software · UNIPAMPA Alegrete")
-titulo = st.sidebar.radio("Página", [p.TITULO for p in PAGINAS], key="pagina")
+st.sidebar.markdown(
+    '<div class="marca"><span class="marca-sinal">AD</span><span><b>Além do Diploma</b>'
+    "<small>Egressos de Computação · UNIPAMPA Alegrete</small></span></div>",
+    unsafe_allow_html=True,
+)
+titulo = st.sidebar.radio("Navegação", [p.TITULO for p in PAGINAS], key="pagina", label_visibility="collapsed")
 pagina = next(p for p in PAGINAS if p.TITULO == titulo)
 
 # O Streamlit descarta o estado de widgets que não são desenhados numa execução.
@@ -57,24 +60,26 @@ for chave in [k for k in st.session_state if str(k).startswith("f_")]:
 ctx_base = dict(total=df_total, metadados=metadados, geojson=geojson)
 
 if pagina is inicio:
-    st.sidebar.caption("A página inicial mostra a base completa. Os filtros aparecem nas demais páginas.")
+    st.sidebar.markdown('<p class="side-nota">A página inicial mostra a base completa. '
+                        "Os filtros aparecem nas demais páginas.</p>", unsafe_allow_html=True)
     inicio.render(df_total, Contexto(**ctx_base, mostrar_tabelas=False), aviso=lambda: estilo.aviso_origem(origem))
     st.stop()
 
 selecao = barra_lateral(df_total)
-mostrar_tabelas = st.sidebar.toggle("Mostrar tabelas junto aos gráficos", value=False, key="f_tabelas")
 df = aplicar(df_total, selecao)
 
 ativos = selecao.ativos(df_total)
 st.sidebar.markdown(
-    f"**{len(df)}** de {len(df_total)} egressos no recorte"
-    + (f" · {ativos} filtro(s) ativo(s)" if ativos else "")
+    f'<p class="recorte"><b>{len(df)}</b> de {len(df_total)} egressos no recorte'
+    + (f"<br><span>{ativos} filtro(s) ativo(s)</span>" if ativos else "") + "</p>",
+    unsafe_allow_html=True,
 )
 
-ctx = Contexto(**ctx_base, mostrar_tabelas=mostrar_tabelas)
+ctx = Contexto(**ctx_base)
 
 if pagina is not metodologia and not recorte_suficiente(df):
-    st.header(pagina.TITULO)
+    estilo.aviso_origem(origem)
+    st.markdown(f'<h1 class="pg-titulo">{pagina.TITULO}</h1>', unsafe_allow_html=True)
     st.warning(
         f"O recorte tem {len(df)} egresso(s). Para proteger a privacidade, o painel só mostra resultados "
         f"com pelo menos {MIN_TOTAL} egressos. Amplie os filtros na barra lateral."

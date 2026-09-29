@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 
 from app.core.config import MIN_GRUPO, MIN_TOTAL
-from app.views.base import Contexto, pct
+from app.views.base import Contexto, cabecalho, pct, rodape
 
 TITULO = "Metodologia"
 
@@ -38,7 +38,8 @@ CATEGORIAS = pd.DataFrame([
 
 
 def render(df, ctx: Contexto) -> None:
-    st.header("Como os dados foram construídos")
+    cabecalho("Metodologia", "Como os dados foram construídos",
+              "Fontes, definições dos indicadores, regras de privacidade, testes estatísticos e limitações.")
     meta = ctx.metadados
 
     st.subheader("Fontes e cobertura")
@@ -108,3 +109,4 @@ def render(df, ctx: Contexto) -> None:
         "- Algumas categorias têm poucos registros, o que limita comparações.\n"
         "- A distribuição por gênero é desbalanceada; comparações por gênero exigem cautela."
     )
+    rodape()

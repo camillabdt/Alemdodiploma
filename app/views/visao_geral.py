@@ -2,67 +2,58 @@
 import streamlit as st
 
 from app.core import charts
-from app.core.config import FAIXAS, PERIODOS
-from app.core.export import tabela_com_download
+from app.core.config import CURSOS, FAIXAS, PERIODOS
 from app.core.privacy import frequencias
 from app.core.stats import num
-from app.views.base import Contexto, leitura, nota_ocultas, pct
+from app.views.base import Contexto, cabecalho, cartao, grafico, indicadores, leitura, pct, rodape
 
 TITULO = "Visão geral"
 
 
+def _bloco(df, coluna, titulo, subtitulo, nome, ordem=None, ordenar_por=None):
+    tab, ocultas = frequencias(df, coluna)
+    if ordenar_por:
+        tab = tab.sort_values(ordenar_por)
+    with cartao(titulo, subtitulo):
+        grafico(charts.barras_verticais(tab, coluna, "", ordem), nome, tab, ocultas)
+
+
 def render(df, ctx: Contexto) -> None:
-    st.header("Quem são os egressos analisados")
-    n, n_total = len(df), len(ctx.total)
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Egressos no recorte", n, help=f"De {n_total} na base analítica.")
-    c2.metric("Ciência da Computação", int((df["Curso_de_Graduacao"] == "Ciência da Computação").sum()))
-    c3.metric("Engenharia de Software", int((df["Curso_de_Graduacao"] == "Engenharia de Software").sum()))
-    c4.metric("Anos de formado (mediana)", f"{df['Tempo_desde_Conclusao'].median():.0f}")
+    cabecalho("Perfil da base", "Quem são os egressos analisados",
+              "Distribuição dos egressos no recorte selecionado por curso, período de conclusão, idade e gênero.")
 
-    meta = ctx.metadados
-    if meta.get("populacao_por_curso"):
-        cob = meta["cobertura_por_curso"]
-        st.caption(
-            f"Cobertura da base em relação à população institucional: "
-            f"CC {pct(cob['Ciência da Computação'] * 100)}, ES {pct(cob['Engenharia de Software'] * 100)}. "
-            "Os resultados representam os egressos com perfil público localizado e validado."
-        )
+    n = len(df)
+    cc = int((df["Curso_de_Graduacao"] == CURSOS[0]).sum())
+    cob = ctx.metadados.get("cobertura_por_curso", {})
+    detalhe_cob = (f"Cobertura CC {pct(cob[CURSOS[0]] * 100)} · ES {pct(cob[CURSOS[1]] * 100)}"
+                   if cob else None)
+    indicadores([
+        ("Egressos no recorte", str(n), f"de {len(ctx.total)} na base" if n != len(ctx.total) else detalhe_cob),
+        ("Ciência da Computação", str(cc), pct(cc / n * 100) + " do recorte" if n else None),
+        ("Engenharia de Software", str(n - cc), pct((n - cc) / n * 100) + " do recorte" if n else None),
+        ("Anos de formado", num(df["Tempo_desde_Conclusao"].median(), 0), "mediana"),
+    ])
 
-    col1, col2 = st.columns(2)
-    with col1:
-        tab, ocultas = frequencias(df, "Periodo_Conclusao")
-        st.plotly_chart(charts.barras_verticais(tab, "Periodo_Conclusao", "Por período de conclusão", PERIODOS),
-                        use_container_width=True, config=charts.config_plotly("egressos_por_periodo"))
-        nota_ocultas(ocultas)
-        tabela_com_download(tab, "egressos_por_periodo", ctx.mostrar_tabelas)
-    with col2:
-        tab, ocultas = frequencias(df, "Ano_de_Conclusao")
-        tab = tab.sort_values("Ano_de_Conclusao")
-        st.plotly_chart(charts.barras_verticais(tab, "Ano_de_Conclusao", "Por ano de conclusão"),
-                        use_container_width=True, config=charts.config_plotly("egressos_por_ano"))
-        nota_ocultas(ocultas)
-        tabela_com_download(tab, "egressos_por_ano", ctx.mostrar_tabelas)
-
-    col3, col4 = st.columns(2)
-    with col3:
-        tab, ocultas = frequencias(df, "Faixa_Etaria")
-        st.plotly_chart(charts.barras_verticais(tab, "Faixa_Etaria", "Por faixa etária", FAIXAS),
-                        use_container_width=True, config=charts.config_plotly("egressos_por_faixa"))
-        nota_ocultas(ocultas)
-        tabela_com_download(tab, "egressos_por_faixa_etaria", ctx.mostrar_tabelas)
-    with col4:
-        tab, ocultas = frequencias(df, "Genero")
-        st.plotly_chart(charts.barras_verticais(tab, "Genero", "Por gênero"),
-                        use_container_width=True, config=charts.config_plotly("egressos_por_genero"))
-        nota_ocultas(ocultas)
-        tabela_com_download(tab, "egressos_por_genero", ctx.mostrar_tabelas)
+    c1, c2 = st.columns(2, gap="medium")
+    with c1:
+        _bloco(df, "Periodo_Conclusao", "Período de conclusão", "Egressos por quinquênio",
+               "egressos_por_periodo", PERIODOS)
+    with c2:
+        _bloco(df, "Ano_de_Conclusao", "Ano de conclusão", "Egressos por ano", "egressos_por_ano",
+               ordenar_por="Ano_de_Conclusao")
+    c3, c4 = st.columns(2, gap="medium")
+    with c3:
+        _bloco(df, "Faixa_Etaria", "Faixa etária", "Idade na data de organização da base",
+               "egressos_por_faixa_etaria", FAIXAS)
+    with c4:
+        _bloco(df, "Genero", "Gênero", "Segundo os registros institucionais", "egressos_por_genero")
 
     tempo = df.groupby("Curso_de_Graduacao", observed=True)["Tempo_desde_Conclusao"].mean()
     if len(tempo) == 2:
         leitura(
-            f"os egressos de Ciência da Computação estão formados há {num(tempo.iloc[0], 1)} anos em média, "
+            f"Os egressos de Ciência da Computação estão formados há {num(tempo.iloc[0], 1)} anos em média, "
             f"contra {num(tempo.iloc[1], 1)} em Engenharia de Software. Como liderança e empreendedorismo "
-            "crescem com o tempo de carreira, comparações entre cursos precisam considerar essa diferença "
-            "(veja a página Trajetória por curso)."
+            "crescem com o tempo de carreira, comparações entre os cursos precisam considerar essa diferença "
+            "(veja Trajetória por curso)."
         )
+    rodape()

@@ -40,10 +40,12 @@ def _achados(df) -> list[tuple[str, str]]:
     dev = {c: int((g["Categoria_Cargo"] == "Desenvolvimento de Software").sum()) for c, g in por_curso.items()}
     if all(v >= MIN_GRUPO for v in dev.values()):
         p_cc, p_es = (_pct(dev[c], len(por_curso[c])) for c in CURSOS)
+        ens = {c: _pct(int((g["Categoria_Cargo"] == "Ensino/Pesquisa").sum()), len(g)) for c, g in por_curso.items()}
+        complemento = ", com mais presença em ensino e pesquisa" if ens[CURSOS[0]] > ens[CURSOS[1]] else ""
         achados.append((
             f"{num(p_es, 0)}%",
             f"dos egressos de Engenharia de Software com cargo identificado atuam em desenvolvimento de "
-            f"software. Em Ciência da Computação, são {num(p_cc, 0)}%, com mais presença em ensino e pesquisa.",
+            f"software. Em Ciência da Computação, são {num(p_cc, 0)}%{complemento}.",
         ))
 
     lid = df.groupby("Periodo_Conclusao", observed=True)["Indicador_Lideranca"].agg(["size", "sum"])

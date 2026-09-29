@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 import pandas as pd
 import streamlit as st
 
-from app.core.config import CURSOS, FAIXAS, INDICADORES, PERIODOS, SEM_INFORMACAO
+from app.core.config import CURSOS, FAIXAS, INDICADORES, PERIODOS
 
 
 @dataclass
@@ -52,23 +52,48 @@ def aplicar(df: pd.DataFrame, s: Selecao) -> pd.DataFrame:
     return df[m]
 
 
+def padroes(df: pd.DataFrame) -> dict:
+    """Valor inicial de cada filtro (chave do session_state → valor)."""
+    return {
+        "f_curso": list(CURSOS),
+        "f_periodo": list(PERIODOS),
+        "f_anos": (int(df["Ano_de_Conclusao"].min()), int(df["Ano_de_Conclusao"].max())),
+        "f_genero": sorted(df["Genero"].unique()),
+        "f_faixa": list(FAIXAS),
+        "f_categoria": sorted(df["Categoria_Cargo"].unique()),
+        "f_tipo": sorted(df["Tipo_Instituicao"].unique()),
+        "f_indicadores": [],
+    }
+
+
+def limpar(df: pd.DataFrame) -> None:
+    for chave, valor in padroes(df).items():
+        st.session_state[chave] = valor
+
+
 def barra_lateral(df: pd.DataFrame) -> Selecao:
-    st.sidebar.header("Filtros")
+    # Os valores iniciais vão para o session_state uma única vez; os widgets não recebem
+    # "default", o que evita o aviso de valor definido em dois lugares.
+    for chave, valor in padroes(df).items():
+        st.session_state.setdefault(chave, valor)
     ano_min, ano_max = int(df["Ano_de_Conclusao"].min()), int(df["Ano_de_Conclusao"].max())
-    cursos = st.sidebar.multiselect("Curso", CURSOS, default=CURSOS, key="f_curso")
-    periodos = st.sidebar.multiselect("Período de conclusão", PERIODOS, default=PERIODOS, key="f_periodo")
-    anos = st.sidebar.slider("Ano de conclusão", ano_min, ano_max, (ano_min, ano_max), key="f_anos")
+
+    cab, botao = st.sidebar.columns([3, 2], vertical_alignment="center")
+    cab.markdown('<p class="side-sec">Filtros</p>', unsafe_allow_html=True)
+    botao.button("Limpar", key="limpar_filtros", on_click=limpar, args=(df,), type="tertiary")
+
+    cursos = st.sidebar.multiselect("Curso", CURSOS, key="f_curso")
+    periodos = st.sidebar.multiselect("Período de conclusão", PERIODOS, key="f_periodo")
+    anos = st.sidebar.slider("Ano de conclusão", ano_min, ano_max, key="f_anos")
 
     with st.sidebar.expander("Perfil"):
-        generos_opts = sorted(df["Genero"].unique())
-        generos = st.multiselect("Gênero", generos_opts, default=generos_opts, key="f_genero")
-        faixas = st.multiselect("Faixa etária", FAIXAS, default=FAIXAS, key="f_faixa")
+        generos = st.multiselect("Gênero", sorted(df["Genero"].unique()), key="f_genero")
+        faixas = st.multiselect("Faixa etária", FAIXAS, key="f_faixa")
 
     with st.sidebar.expander("Atuação profissional"):
-        cat_opts = sorted(c for c in df["Categoria_Cargo"].unique())
-        categorias = st.multiselect("Categoria do cargo atual", cat_opts, default=cat_opts, key="f_categoria")
-        tipo_opts = sorted(df["Tipo_Instituicao"].unique())
-        tipos = st.multiselect("Tipo de instituição", tipo_opts, default=tipo_opts, key="f_tipo")
+        categorias = st.multiselect("Categoria do cargo atual", sorted(df["Categoria_Cargo"].unique()),
+                                    key="f_categoria")
+        tipos = st.multiselect("Tipo de instituição", sorted(df["Tipo_Instituicao"].unique()), key="f_tipo")
         exigir = st.multiselect(
             "Somente egressos com evidência de",
             list(INDICADORES.keys()),
@@ -76,8 +101,4 @@ def barra_lateral(df: pd.DataFrame) -> Selecao:
             key="f_indicadores",
             help="Deixe vazio para incluir todos. Com mais de um item, o egresso precisa ter todos.",
         )
-    st.sidebar.caption(
-        "Categorias \"" + "\" e \"".join(SEM_INFORMACAO) + "\" ficam fora dos gráficos de atuação, "
-        "mas continuam nos totais."
-    )
-    return Selecao(cursos, periodos, anos, generos, faixas, categorias, tipos, exigir)
+    return Selecao(cursos, periodos, tuple(anos), generos, faixas, categorias, tipos, exigir)

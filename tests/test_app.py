@@ -60,3 +60,12 @@ def test_filtros_sobrevivem_a_ida_ao_inicio():
     at.sidebar.radio(key="pagina").set_value("Início").run()
     at.sidebar.radio(key="pagina").set_value("Visão geral").run()
     assert at.multiselect(key="f_curso").value == ["Engenharia de Software"]
+
+
+def test_limpar_filtros_restaura_padroes():
+    at = AppTest.from_file(APP, default_timeout=60).run()
+    at.sidebar.radio(key="pagina").set_value("Visão geral").run()
+    at.multiselect(key="f_curso").set_value(["Engenharia de Software"]).run()
+    at.button(key="limpar_filtros").click().run()
+    assert at.multiselect(key="f_curso").value == ["Ciência da Computação", "Engenharia de Software"]
+    assert not at.warning  # sem o aviso de valor padrão definido em dois lugares

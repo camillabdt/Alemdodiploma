@@ -2,10 +2,13 @@
 
 Usa sempre a base completa (sem filtros), para que a abertura seja a mesma para todos.
 """
+import base64
+from functools import lru_cache
+
 import streamlit as st
 
 from app.core import charts
-from app.core.config import CURSOS, MIN_GRUPO
+from app.core.config import CURSOS, MIN_GRUPO, ROOT
 from app.core.privacy import sem_informacao
 from app.core.stats import num
 from app.views.base import Contexto
@@ -21,6 +24,17 @@ ATALHOS = [
     ("Origem geográfica", "De onde vêm os estudantes que se formaram em Alegrete."),
     ("Metodologia", "Fontes, definições, privacidade e limitações dos dados."),
 ]
+
+
+IMAGEM_CAPA = ROOT / "app" / "assets" / "capa.webp"
+
+
+@lru_cache(maxsize=1)
+def _imagem_capa() -> str | None:
+    """Imagem embutida em base64, para o layout da capa ficar todo no mesmo bloco HTML."""
+    if not IMAGEM_CAPA.exists():
+        return None
+    return "data:image/webp;base64," + base64.b64encode(IMAGEM_CAPA.read_bytes()).decode()
 
 
 def _ir_para(titulo: str) -> None:
@@ -74,13 +88,18 @@ def render(df, ctx: Contexto, aviso=None) -> None:
     n = len(base)
     anos = (int(base["Ano_de_Conclusao"].min()), int(base["Ano_de_Conclusao"].max()))
 
+    img = _imagem_capa()
+    ilustracao = (f'<div class="hero-img"><img src="{img}" alt="Ilustração de um egresso formado cercado por '
+                  'perfis profissionais, gráficos e indicadores de carreira"></div>') if img else ""
     st.markdown(
-        f"""<section class="hero">
+        f"""<section class="hero{' com-img' if img else ''}">
+        <div class="hero-txt">
         <p class="kicker">UNIPAMPA · Campus Alegrete · {anos[0]}–{anos[1]}</p>
         <h1 class="hero-titulo">Além do Diploma</h1>
         <p class="hero-sub">O que acontece depois da formatura? Onde atuam os egressos de Computação,
         quem chega à liderança, quem empreende e quem muda de rumo. Um retrato de {n} trajetórias
         profissionais, construído a partir de registros da universidade e de perfis públicos.</p>
+        </div>{ilustracao}
         </section>""",
         unsafe_allow_html=True,
     )

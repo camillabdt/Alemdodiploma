@@ -7,6 +7,44 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+
+def _descartar_modulos_alterados() -> None:
+    """Força a releitura dos módulos do projeto que mudaram desde a última execução.
+
+    O Streamlit reexecuta este arquivo a cada interação, mas mantém em memória os módulos
+    importados. Depois de um `git push`, o Streamlit Cloud atualiza os arquivos e o app
+    continuaria usando versões antigas de app/core e app/views, o que gera erros como
+    "missing argument" até um reboot manual. Aqui, cada módulo do projeto guarda o horário
+    em que foi carregado; se o arquivo for mais novo (ou o módulo veio de uma versão sem essa
+    marca), ele é descartado e importado de novo.
+    """
+    import os
+
+    alterados = [
+        nome for nome, mod in list(sys.modules.items())
+        if nome.split(".")[0] in ("app", "pipeline") and nome != "__main__"
+        and getattr(mod, "__file__", None) and os.path.exists(mod.__file__)
+        and os.path.getmtime(mod.__file__) > getattr(mod, "_carregado_em", 0.0)
+    ]
+    if alterados:
+        for nome in [n for n in sys.modules if n.split(".")[0] in ("app", "pipeline")]:
+            del sys.modules[nome]  # recarrega o conjunto inteiro para manter as versões coerentes
+
+
+def _marcar_modulos_carregados() -> None:
+    import time
+
+    agora = time.time()
+    for nome, mod in list(sys.modules.items()):
+        if nome.split(".")[0] in ("app", "pipeline") and not hasattr(mod, "_carregado_em"):
+            try:
+                mod._carregado_em = agora
+            except (AttributeError, TypeError):
+                pass
+
+
+_descartar_modulos_alterados()
+
 import streamlit as st  # noqa: E402
 
 from app.core import data, estilo  # noqa: E402
@@ -16,6 +54,8 @@ from app.core.privacy import recorte_suficiente  # noqa: E402
 from app.views import (geografia, inicio, insercao, maturidade, metodologia, relacoes,  # noqa: E402
                        trajetoria, visao_geral)
 from app.views.base import Contexto  # noqa: E402
+
+_marcar_modulos_carregados()
 
 st.set_page_config(page_title="Além do Diploma · Egressos UNIPAMPA", page_icon="🎓", layout="wide")
 estilo.aplicar()

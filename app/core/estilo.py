@@ -44,6 +44,15 @@ h2, h3 {{ font-weight: 500 !important; }}
 
 /* ---------- página inicial ---------- */
 .hero {{ padding: 1.2rem 0 1.6rem 0; }}
+.hero.com-img {{ display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2.5rem;
+    align-items: center; padding: 0.6rem 0 1.4rem 0; }}
+.hero-img {{ display: flex; justify-content: flex-end; }}
+.hero-img img {{ width: 100%; max-width: 520px; height: auto; display: block; }}
+@media (max-width: 900px) {{
+  .hero.com-img {{ grid-template-columns: 1fr; gap: 1.2rem; }}
+  .hero-img {{ justify-content: center; }}
+  .hero-img img {{ max-width: 420px; }}
+}}
 .kicker {{ text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem; font-weight: 600;
           color: {COR_PRINCIPAL}; margin: 0 0 0.6rem 0; }}
 .hero-titulo {{ font-family: 'Source Serif 4', Georgia, serif !important; font-size: clamp(2.8rem, 6vw, 4.6rem) !important;

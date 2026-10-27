@@ -64,20 +64,18 @@ def cartao(titulo: str, subtitulo: str | None = None):
 
 
 def grafico(fig, nome: str, dados: pd.DataFrame | None = None, ocultas: int = 0) -> None:
-    """Desenha a figura sem título próprio (o título vem do cartão) e recolhe os dados."""
+    """Desenha a figura sem título próprio (o título vem do cartão).
+
+    As tabelas de apoio não aparecem na tela, para manter o painel limpo: elas estão
+    todas na página Exportar, em PDF, HTML, Markdown, CSV e JSON. O parâmetro `dados`
+    é mantido para compatibilidade.
+    """
     tem_legenda = any(getattr(t, "showlegend", None) is not False for t in fig.data) and len(fig.data) > 1
     fig.update_layout(title_text="", margin=dict(t=36 if tem_legenda else 12))
     st.plotly_chart(fig, use_container_width=True, config=charts.config_plotly(nome))
     if ocultas:
-        st.markdown(
-            f'<p class="nota-priv">{ocultas} categoria(s) com menos de {MIN_GRUPO} egressos ocultada(s) '
-            "para proteger a privacidade.</p>",
-            unsafe_allow_html=True,
-        )
-    if dados is not None and not dados.empty:
-        with st.expander("Ver dados"):
-            st.dataframe(dados, hide_index=True, use_container_width=True)
-            botao_csv(dados, nome)
+        st.markdown(f'<p class="nota-priv">{ocultas} grupo(s) com menos de {MIN_GRUPO} egressos não exibido(s).</p>',
+                    unsafe_allow_html=True)
 
 
 def tabela(dados: pd.DataFrame, nome: str) -> None:
@@ -87,8 +85,11 @@ def tabela(dados: pd.DataFrame, nome: str) -> None:
 
 
 def nota_estatistica(texto: str, aviso: str | None = None) -> None:
-    extra = f'<br><span class="nota-aviso">{escape(aviso)}</span>' if aviso else ""
-    st.markdown(f'<p class="nota-est"><span>Teste</span>{texto}{extra}</p>', unsafe_allow_html=True)
+    """Detalhes técnicos recolhidos: quem quiser abre; quem não quiser não vê."""
+    with st.expander("Sobre o teste"):
+        st.markdown(f'<p class="nota-est">{texto}</p>', unsafe_allow_html=True)
+        if aviso:
+            st.markdown(f'<p class="nota-est nota-aviso">{escape(aviso)}</p>', unsafe_allow_html=True)
 
 
 def leitura(texto: str) -> None:
@@ -102,9 +103,8 @@ def vazio(texto: str) -> None:
 
 def rodape() -> None:
     st.markdown(
-        '<footer class="rodape">Além do Diploma · Trabalho de Conclusão de Curso em Engenharia de Software · '
-        f"UNIPAMPA Alegrete. Resultados agregados; grupos com menos de {MIN_GRUPO} egressos não são exibidos. "
-        "CAAE 87973525.8.0000.5323.</footer>",
+        '<footer class="rodape">Além do Diploma · TCC em Engenharia de Software · UNIPAMPA Alegrete · '
+        "dados agregados</footer>",
         unsafe_allow_html=True,
     )
 

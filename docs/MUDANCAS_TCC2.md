@@ -56,3 +56,10 @@ O protótipo inicial foi desenvolvido em grupo na disciplina Introdução à Ci�
 ### Auditoria (itens 2 e 3 do parecer)
 
 - `auditoria/auditoria.py`: planilha do protocolo, pontuação de validação, amostra estratificada para dupla codificação, kappa de Cohen com PABAK e fluxograma de exclusões.
+
+### IA explicável e exportação
+
+- Módulo de IA explicável (`app/core/xai.py`): regressão logística e random forest, validação cruzada estratificada repetida e valores de Shapley exatos por fator, validados contra a biblioteca SHAP. Página Explicações (IA) com explicações apenas globais e agregadas.
+- Relatório exportável (`app/core/relatorio.py`) com todas as tabelas agregadas do recorte, em PDF, HTML, Markdown, CSV e JSON, e página Exportar.
+- Interface mais limpa: descrições curtas, detalhes estatísticos recolhidos em "Sobre o teste" e tabelas de apoio concentradas na exportação.
+

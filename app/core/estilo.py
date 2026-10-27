@@ -140,7 +140,7 @@ h2, h3 {{ font-weight: 500 !important; }}
 [data-testid="stExpander"] details {{ border: none !important; }}
 [data-testid="stExpander"] summary {{ padding: 0.3rem 0 !important; font-size: 0.86rem; color: {COR_PRINCIPAL}; }}
 [data-testid="stExpander"] summary:hover {{ color: {COR_TEXTO}; }}
-.stDownloadButton button p {{ font-size: 0.86rem; color: {COR_PRINCIPAL}; }}
+[data-testid="stBaseButton-tertiary"] p {{ font-size: 0.86rem; color: {COR_PRINCIPAL}; }}
 
 /* ---------- notas, leitura e estados vazios ---------- */
 .nota-est {{ font-size: 0.84rem; color: #4A5A56; background: #F5F8F6; border-radius: 6px; padding: 0.55rem 0.75rem;
@@ -155,6 +155,8 @@ h2, h3 {{ font-weight: 500 !important; }}
 .leitura > span {{ text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.7rem; font-weight: 700;
     color: #8A5A10; }}
 .leitura p {{ margin: 0.25rem 0 0 0; font-size: 1rem; line-height: 1.55; color: #3E4E4A; }}
+.fmt-t {{ font-family: 'Source Serif 4', Georgia, serif; font-size: 1.3rem; margin: 0; color: {COR_TEXTO}; }}
+.fmt-d {{ font-size: 0.82rem; color: #5C6B67; margin: 0.1rem 0 0.6rem 0; line-height: 1.35; white-space: nowrap; }}
 .vazio {{ border: 1px dashed #C9D3CF; border-radius: 10px; padding: 1.2rem; color: #5C6B67; text-align: center;
     font-size: 0.95rem; }}
 </style>

@@ -11,7 +11,7 @@ TITULO = "Origem geográfica"
 
 def render(df, ctx: Contexto) -> None:
     cabecalho("Origem", "De onde vêm os egressos",
-              "UF de nascimento, segundo os registros institucionais. Municípios não são exibidos.")
+              "Estado de nascimento, segundo os registros da universidade.")
 
     tab_uf, ocultas = frequencias(df, "UF_Nascimento")
     n_ufs = df["UF_Nascimento"].nunique()

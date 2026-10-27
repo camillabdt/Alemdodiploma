@@ -12,8 +12,7 @@ TITULO = "Trajetória por curso"
 
 def render(df, ctx: Contexto) -> None:
     cabecalho("Trajetória profissional", "Sinais de trajetória além do cargo atual",
-              "\"Com evidência\" significa que o perfil público mostra o fenômeno de forma explícita; "
-              "a ausência não prova que ele não ocorreu. Definições na página Metodologia.")
+              "Percentual de egressos com evidência explícita de cada sinal no perfil público.")
 
     indicadores([(nome, pct(df[ind].mean() * 100), f"{int(df[ind].sum())} de {len(df)} egressos")
                  for ind, nome in INDICADORES.items()])
@@ -33,9 +32,7 @@ def render(df, ctx: Contexto) -> None:
         rodape()
         return
 
-    secao("Os cursos diferem?",
-          "Primeiro a comparação direta; depois, a comparação que mantém constante o tempo de formado, "
-          "já que os egressos de CC estão formados há mais tempo, em média.")
+    secao("Os cursos diferem?", "Comparação direta e comparação mantendo igual o tempo de formado.")
 
     brutos = [stats.associacao(df, "Curso_de_Graduacao", ind) for ind in INDICADORES]
     p_holm = stats.holm([r["p"] if r else 1.0 for r in brutos])

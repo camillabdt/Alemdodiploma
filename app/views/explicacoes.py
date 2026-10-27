@@ -53,13 +53,8 @@ def _leitura(exp: xai.Explicacao, anos: dict[str, pd.DataFrame], nome: str) -> s
 
 
 def render(df, ctx: Contexto) -> None:
-    cabecalho(
-        "IA explicável", "O que se associa a cada trajetória",
-        "Dois modelos de aprendizado de máquina estimam a chance de cada sinal de trajetória a partir do curso, "
-        "dos anos de formado, da origem e do tipo de instituição. As explicações mostram quanto cada fator "
-        "contribui, em média, para essas estimativas. Os resultados descrevem associações na base, não causas, "
-        "e nunca se referem a pessoas individualmente.",
-    )
+    cabecalho("IA explicável", "O que se associa a cada trajetória",
+              "Quanto cada fator pesa nas estimativas de dois modelos de IA. Associações, não causas.")
 
     alvo = st.radio("Indicador", list(xai.ALVOS), format_func=xai.ALVOS.get, horizontal=True, key="xai_alvo",
                     label_visibility="collapsed")

@@ -15,7 +15,7 @@ TITULO = "Relações entre indicadores"
 
 def render(df, ctx: Contexto) -> None:
     cabecalho("Combinação de sinais", "Como os indicadores se combinam",
-              "Quais sinais de trajetória tendem a aparecer juntos nos mesmos egressos.")
+              "Quais sinais aparecem juntos nos mesmos egressos.")
 
     nomes = list(INDICADORES.values())
     matriz = pd.DataFrame(np.nan, index=nomes, columns=nomes)

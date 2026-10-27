@@ -51,8 +51,8 @@ from app.core import data, estilo  # noqa: E402
 from app.core.config import DADOS_EXEMPLO, DADOS_PUBLICOS, MIN_TOTAL  # noqa: E402
 from app.core.filters import aplicar, barra_lateral  # noqa: E402
 from app.core.privacy import recorte_suficiente  # noqa: E402
-from app.views import (explicacoes, geografia, inicio, insercao, maturidade, metodologia,  # noqa: E402
-                       relacoes, trajetoria, visao_geral)
+from app.views import (explicacoes, exportar, geografia, inicio, insercao, maturidade,  # noqa: E402
+                       metodologia, relacoes, trajetoria, visao_geral)
 from app.views.base import Contexto  # noqa: E402
 
 _marcar_modulos_carregados()
@@ -60,7 +60,8 @@ _marcar_modulos_carregados()
 st.set_page_config(page_title="Além do Diploma · Egressos UNIPAMPA", page_icon="🎓", layout="wide")
 estilo.aplicar()
 
-PAGINAS = [inicio, visao_geral, insercao, trajetoria, maturidade, relacoes, explicacoes, geografia, metodologia]
+PAGINAS = [inicio, visao_geral, insercao, trajetoria, maturidade, relacoes, explicacoes, geografia, metodologia,
+           exportar]
 
 
 def _csv_dos_secrets() -> str | None:
@@ -134,4 +135,7 @@ if pagina is not metodologia and not recorte_suficiente(df):
     st.stop()
 
 estilo.aviso_origem(origem)
-pagina.render(df, ctx)
+if pagina is exportar:
+    pagina.render(df, ctx, origem=origem)
+else:
+    pagina.render(df, ctx)

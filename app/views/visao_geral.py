@@ -20,7 +20,7 @@ def _bloco(df, coluna, titulo, subtitulo, nome, ordem=None, ordenar_por=None):
 
 def render(df, ctx: Contexto) -> None:
     cabecalho("Perfil da base", "Quem são os egressos analisados",
-              "Distribuição dos egressos no recorte selecionado por curso, período de conclusão, idade e gênero.")
+              "Curso, período de conclusão, idade e gênero.")
 
     n = len(df)
     cc = int((df["Curso_de_Graduacao"] == CURSOS[0]).sum())

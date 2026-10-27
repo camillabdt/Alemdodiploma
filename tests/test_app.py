@@ -78,3 +78,10 @@ def test_explicacoes_troca_de_indicador_e_fator():
     at.radio(key="xai_alvo").set_value("Indicador_Empreendedorismo").run()
     at.radio(key="xai_fator").set_value("Curso").run()
     assert not at.exception
+
+
+def test_exportar_gera_os_cinco_formatos():
+    at = AppTest.from_file(APP, default_timeout=120).run()
+    at.sidebar.radio(key="pagina").set_value("Exportar").run()
+    assert not at.exception
+    assert len(at.get("download_button")) == 5

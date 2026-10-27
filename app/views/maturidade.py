@@ -12,7 +12,7 @@ TITULO = "Tempo de carreira"
 
 def render(df, ctx: Contexto) -> None:
     cabecalho("Maturidade profissional", "Tempo desde a conclusão",
-              "Como os sinais de trajetória se relacionam com os anos de formado.")
+              "Como os sinais de trajetória mudam com os anos de formado.")
 
     resultados = {ind: stats.comparar_tempo(df, ind) for ind in INDICADORES}
     validos = {k: v for k, v in resultados.items()

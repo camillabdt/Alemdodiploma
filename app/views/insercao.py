@@ -31,8 +31,7 @@ def _por_curso(base, coluna, titulo, nome):
 
 def render(df, ctx: Contexto) -> None:
     cabecalho("Inserção profissional", "Onde os egressos atuam",
-              "Cargo mais recente identificado no perfil público e tipo de organização. "
-              "Registros sem informação ficam fora dos gráficos.")
+              "Cargo mais recente e tipo de organização.")
 
     cargos = sem_informacao(df, "Categoria_Cargo")
     inst = sem_informacao(df, "Tipo_Instituicao")

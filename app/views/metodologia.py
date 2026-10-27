@@ -39,7 +39,7 @@ CATEGORIAS = pd.DataFrame([
 
 def render(df, ctx: Contexto) -> None:
     cabecalho("Metodologia", "Como os dados foram construídos",
-              "Fontes, definições dos indicadores, regras de privacidade, testes estatísticos e limitações.")
+              "Fontes, definições, privacidade, testes e limitações.")
     meta = ctx.metadados
 
     st.subheader("Fontes e cobertura")

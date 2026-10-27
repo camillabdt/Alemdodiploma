@@ -40,10 +40,12 @@ pytest
 | Trajetória por curso | Liderança, progressão interna, empreendedorismo e mudança de área por curso; regressão logística controlando o tempo de formado | RF04, RF05 |
 | Tempo de carreira | Tempo desde a conclusão com e sem cada indicador; indicadores por período | RF07 |
 | Relações entre indicadores | Matriz Phi e coocorrência entre os quatro indicadores | RF05 |
+| Explicações (IA) | Regressão logística e random forest com explicações SHAP globais e agregadas | RF05 |
 | Origem geográfica | Mapa por UF de nascimento e distribuição por região | RF06 |
 | Metodologia | Fontes, cobertura, definições dos indicadores, categorias, privacidade, testes e limitações | RF08, RNF06 |
+| Exportar | Relatório agregado do recorte filtrado em PDF, HTML, Markdown, CSV (.zip) e JSON | RF09 |
 
-Filtros na barra lateral (RF02): curso, período e ano de conclusão, gênero, faixa etária, categoria do cargo, tipo de instituição e presença de indicadores. Cada tabela tem download em CSV e cada gráfico, em PNG (RF09).
+Filtros na barra lateral (RF02): curso, período e ano de conclusão, gênero, faixa etária, categoria do cargo, tipo de instituição e presença de indicadores. Cada gráfico pode ser baixado em PNG pela barra do próprio gráfico, e a página Exportar gera um relatório com todas as tabelas do recorte em PDF, HTML, Markdown, CSV e JSON (RF09). Os arquivos contêm só dados agregados.
 
 ## Privacidade (RNF01)
 

@@ -209,3 +209,61 @@ def pontos_por_categoria(df: pd.DataFrame, coluna: str, ordem_cursos: list[str],
     fig.update_layout(height=int(22 * (-y) + 40), margin=dict(l=10, r=10, t=10, b=10),
                       showlegend=False, hovermode="closest")
     return fig
+
+
+# ---------------------------------------------------------------- IA explicável
+COR_MODELO = {"Random forest": COR_PRINCIPAL, "Regressão logística": "#8FBFB3"}
+COR_POSITIVO, COR_NEGATIVO = COR_PRINCIPAL, "#B5654A"
+
+
+def importancia_fatores(imp: pd.DataFrame) -> go.Figure:
+    """imp: índice = fatores, colunas = modelos, valores = média de |SHAP| em pontos percentuais."""
+    ordem = imp.mean(axis=1).sort_values().index.tolist()
+    fig = go.Figure()
+    for modelo in ["Regressão logística", "Random forest"]:
+        if modelo not in imp:
+            continue
+        valores = imp.loc[ordem, modelo]
+        fig.add_trace(go.Bar(
+            y=ordem, x=valores, name=modelo, orientation="h", marker_color=COR_MODELO[modelo],
+            text=[f"{v:.1f} pp".replace(".", ",") for v in valores], textposition="outside", cliponaxis=False,
+            hovertemplate=f"{modelo}<br>%{{y}}: %{{x:.1f}} pp<extra></extra>"))
+    fig.update_layout(barmode="group", height=330, xaxis_title="Contribuição média (pontos percentuais)",
+                      yaxis_title="", bargap=0.25,
+                      xaxis_range=[0, float(imp.to_numpy().max()) * 1.3])
+    return fig
+
+
+def efeito_anos(tabs: dict[str, pd.DataFrame]) -> go.Figure:
+    """tabs: modelo -> DataFrame(Valor=anos, Efeito=pp)."""
+    fig = go.Figure()
+    fig.add_hline(y=0, line_color="#C9D3CF", line_width=1)
+    for modelo in ["Regressão logística", "Random forest"]:
+        t = tabs.get(modelo)
+        if t is None or t.empty:
+            continue
+        fig.add_trace(go.Scatter(
+            x=t["Valor"], y=t["Efeito"], name=modelo, mode="lines+markers",
+            line=dict(color=COR_MODELO[modelo], width=3 if modelo == "Random forest" else 2,
+                      dash="solid" if modelo == "Random forest" else "dot"),
+            marker=dict(size=7), customdata=t["n"],
+            hovertemplate=f"{modelo}<br>%{{x}} anos de formado: %{{y:+.1f}} pp<br>%{{customdata}} egressos<extra></extra>"))
+    fig.update_layout(height=340, xaxis_title="Anos desde a conclusão", yaxis_title="Efeito médio (pp)",
+                      xaxis=dict(dtick=2))
+    return fig
+
+
+def efeito_categorias(tab: pd.DataFrame) -> go.Figure:
+    """tab: Valor, n, Efeito (pp). Barras divergentes: positivo aumenta a chance estimada."""
+    tab = tab.sort_values("Efeito")
+    cores = [COR_POSITIVO if v >= 0 else COR_NEGATIVO for v in tab["Efeito"]]
+    fig = go.Figure(go.Bar(
+        y=tab["Valor"], x=tab["Efeito"], orientation="h", marker_color=cores, customdata=tab["n"],
+        text=[f"{v:+.1f} pp".replace(".", ",") for v in tab["Efeito"]], textposition="outside", cliponaxis=False,
+        hovertemplate="%{y}: %{x:+.1f} pp<br>%{customdata} egressos<extra></extra>"))
+    lim = float(tab["Efeito"].abs().max()) * 1.35 if len(tab) else 1
+    fig.add_vline(x=0, line_color="#9AA8A3", line_width=1)
+    fig.update_layout(height=max(200, 46 * len(tab) + 70), xaxis_title="Efeito médio (pp)", yaxis_title="",
+                      xaxis_range=[-lim, lim], showlegend=False)
+    fig.update_yaxes(automargin=True)
+    return fig

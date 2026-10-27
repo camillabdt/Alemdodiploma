@@ -51,8 +51,8 @@ from app.core import data, estilo  # noqa: E402
 from app.core.config import DADOS_EXEMPLO, DADOS_PUBLICOS, MIN_TOTAL  # noqa: E402
 from app.core.filters import aplicar, barra_lateral  # noqa: E402
 from app.core.privacy import recorte_suficiente  # noqa: E402
-from app.views import (geografia, inicio, insercao, maturidade, metodologia, relacoes,  # noqa: E402
-                       trajetoria, visao_geral)
+from app.views import (explicacoes, geografia, inicio, insercao, maturidade, metodologia,  # noqa: E402
+                       relacoes, trajetoria, visao_geral)
 from app.views.base import Contexto  # noqa: E402
 
 _marcar_modulos_carregados()
@@ -60,7 +60,7 @@ _marcar_modulos_carregados()
 st.set_page_config(page_title="Além do Diploma · Egressos UNIPAMPA", page_icon="🎓", layout="wide")
 estilo.aplicar()
 
-PAGINAS = [inicio, visao_geral, insercao, trajetoria, maturidade, relacoes, geografia, metodologia]
+PAGINAS = [inicio, visao_geral, insercao, trajetoria, maturidade, relacoes, explicacoes, geografia, metodologia]
 
 
 def _csv_dos_secrets() -> str | None:
@@ -103,6 +103,13 @@ if pagina is inicio:
     st.sidebar.markdown('<p class="side-nota">A página inicial mostra a base completa. '
                         "Os filtros aparecem nas demais páginas.</p>", unsafe_allow_html=True)
     inicio.render(df_total, Contexto(**ctx_base, mostrar_tabelas=False), aviso=lambda: estilo.aviso_origem(origem))
+    st.stop()
+
+if not getattr(pagina, "USA_FILTROS", True):
+    st.sidebar.markdown('<p class="side-nota">Esta página usa a base completa: os modelos são ajustados sobre '
+                        "todos os egressos, e os filtros não se aplicam.</p>", unsafe_allow_html=True)
+    estilo.aviso_origem(origem)
+    pagina.render(df_total, Contexto(**ctx_base))
     st.stop()
 
 selecao = barra_lateral(df_total)

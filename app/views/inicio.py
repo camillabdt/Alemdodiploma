@@ -21,7 +21,7 @@ ATALHOS = [
     ("Inserção profissional", "Em que áreas e tipos de organização os egressos atuam."),
     ("Trajetória por curso", "Liderança, progressão, empreendedorismo e mudança de área."),
     ("Tempo de carreira", "Como os sinais de trajetória mudam com os anos de formado."),
-    ("Origem geográfica", "De onde vêm os estudantes que se formaram em Alegrete."),
+    ("Explicações (IA)", "Que fatores a IA associa a liderança, empreendedorismo e progressão."),
     ("Metodologia", "Fontes, definições, privacidade e limitações dos dados."),
 ]
 

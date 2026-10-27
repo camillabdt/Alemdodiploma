@@ -4,9 +4,9 @@ from pathlib import Path
 import pytest
 from streamlit.testing.v1 import AppTest
 
-from app.views import geografia, inicio, insercao, maturidade, metodologia, relacoes, trajetoria, visao_geral
+from app.views import explicacoes, geografia, inicio, insercao, maturidade, metodologia, relacoes, trajetoria, visao_geral
 
-PAGINAS = [inicio, visao_geral, insercao, trajetoria, maturidade, relacoes, geografia, metodologia]
+PAGINAS = [inicio, visao_geral, insercao, trajetoria, maturidade, relacoes, explicacoes, geografia, metodologia]
 
 APP = str(Path(__file__).resolve().parents[1] / "app" / "app.py")
 
@@ -69,3 +69,12 @@ def test_limpar_filtros_restaura_padroes():
     at.button(key="limpar_filtros").click().run()
     assert at.multiselect(key="f_curso").value == ["Ciência da Computação", "Engenharia de Software"]
     assert not at.warning  # sem o aviso de valor padrão definido em dois lugares
+
+
+def test_explicacoes_troca_de_indicador_e_fator():
+    at = AppTest.from_file(APP, default_timeout=120).run()
+    at.sidebar.radio(key="pagina").set_value("Explicações (IA)").run()
+    assert not at.sidebar.multiselect  # sem filtros nesta página
+    at.radio(key="xai_alvo").set_value("Indicador_Empreendedorismo").run()
+    at.radio(key="xai_fator").set_value("Curso").run()
+    assert not at.exception

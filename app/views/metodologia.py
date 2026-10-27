@@ -101,6 +101,19 @@ def render(df, ctx: Contexto) -> None:
         "são ajustados pelo método de Holm. As análises são associativas e não permitem conclusões causais."
     )
 
+    st.subheader("IA explicável")
+    st.markdown(
+        "A página Explicações (IA) ajusta dois modelos para liderança, empreendedorismo e progressão interna: uma "
+        "regressão logística, de leitura direta, e um random forest, mais flexível. Os fatores são curso, anos de "
+        "formado, origem (RS ou outro estado) e tipo de instituição. O desempenho é medido pela AUC em validação "
+        "cruzada, e as explicações usam valores de Shapley (SHAP) exatos, calculados por fator.\n\n"
+        "Algumas escolhas protegem a validade e a privacidade: a categoria do cargo não entra como fator, porque "
+        "\"Gestão/Liderança\" praticamente define o indicador de liderança; o gênero não entra, para não tratar um "
+        "atributo sensível como explicação de trajetórias; mudança de área não é modelada, por ter poucos casos; "
+        "e só são exibidas explicações globais e médias de grupos com pelo menos 5 egressos, nunca explicações "
+        "sobre uma pessoa."
+    )
+
     st.subheader("Limitações")
     st.markdown(
         "- Perfis públicos são autodeclarados e podem estar incompletos ou desatualizados.\n"

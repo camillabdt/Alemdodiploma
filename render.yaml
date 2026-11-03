@@ -1,0 +1,17 @@
+# Somente um serviço gratuito. Interface React e API Python no mesmo endereço.
+services:
+  - type: web
+    name: alumni-view
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeployTrigger: 'off'
+    envVars:
+      - key: PORT
+        value: '8000'
+      - key: OMP_NUM_THREADS
+        value: '1'
+      - key: OPENBLAS_NUM_THREADS
+        value: '1'

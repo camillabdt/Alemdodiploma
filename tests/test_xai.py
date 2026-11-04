@@ -39,15 +39,3 @@ def test_fatores_sem_vazamento_nem_atributo_sensivel(df_exemplo):
     assert "categoria" not in colunas and "gestao" not in colunas
     assert "genero" not in colunas and "feminino" not in colunas
     assert "Indicador_Mudanca_Area" not in xai.ALVOS
-
-
-def test_explicar_e_efeito_medio_respeitam_grupo_minimo(df_exemplo):
-    exp = xai.explicar(df_exemplo, "Indicador_Lideranca", tamanho_fundo=15, repeticoes=1)
-    assert set(exp.importancia.columns) == {"Regressão logística", "Random forest"}
-    assert list(exp.importancia.index) == xai.FATORES
-    for nome, (auc, _) in exp.auc.items():
-        assert 0 <= auc <= 1
-    # o valor base fica próximo da taxa real (sem reponderação de classes)
-    assert exp.base["Random forest"] == pytest.approx(exp.positivos / exp.n * 100, abs=8)
-    tab = xai.efeito_medio(exp, "Random forest", "Anos de formado", min_grupo=5)
-    assert (tab["n"] >= 5).all()

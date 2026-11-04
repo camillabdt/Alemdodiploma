@@ -1,0 +1,44 @@
+id_pesquisa,titulo_pergunta_no_forms,linha_da_matriz
+P1,Qual é a sua atuação na gestão do curso?,
+P2,Qual é a grande área do curso?,
+P3,Há quanto tempo atua ou atuou na gestão de curso?,
+D1,O curso acompanha seus egressos?,
+D2,Quais fontes são utilizadas?,
+D3,Com que periodicidade as informações sobre os egressos são atualizadas?,
+D4,Quais ferramentas o curso utiliza no acompanhamento de egressos?,
+D5,Quais informações sobre os egressos estão disponíveis?,
+D6,Para que essas informações são utilizadas?,
+D7,Quais dificuldades existem nesse acompanhamento?,
+D8,Que informação faz falta para as decisões da coordenação?,
+UP1,Utilidade percebida,A Alumni View ajudaria a realizar o acompanhamento de egressos com mais agilidade.
+UP2,Utilidade percebida,A Alumni View contribuiria para melhorar meu desempenho nas atividades de acompanhamento.
+UP3,Utilidade percebida,A Alumni View permitiria produzir mais análises úteis no tempo disponível.
+UP4,Utilidade percebida,A Alumni View ajudaria a realizar o acompanhamento de forma mais eficaz.
+UP5,Utilidade percebida,A Alumni View facilitaria o trabalho de acompanhamento de egressos.
+UP6,Utilidade percebida,Considero a Alumni View útil para as atividades da coordenação.
+FUP1,Facilidade de uso percebida,Foi fácil aprender a usar a Alumni View.
+FUP2,Facilidade de uso percebida,Consegui fazer a Alumni View apresentar as análises que eu buscava.
+FUP3,Facilidade de uso percebida,A interação com a Alumni View foi clara e compreensível.
+FUP4,Facilidade de uso percebida,Consegui ajustar a exploração dos dados às minhas necessidades.
+FUP5,Facilidade de uso percebida,Acredito que seria fácil adquirir habilidade no uso da Alumni View.
+FUP6,Facilidade de uso percebida,Considero a Alumni View fácil de usar.
+A1,O que ajudou no uso da plataforma?,
+A2,O que dificultou o uso?,
+A3,O que precisa mudar para usar a plataforma no seu curso?,
+N1,O que impediu você de experimentar a plataforma?,
+IU1,Intenção de uso,"Se tivesse acesso contínuo à ferramenta, eu teria intenção de utilizá-la no acompanhamento de egressos."
+IU2,Intenção de uso,Eu consideraria incorporar a ferramenta à rotina da coordenação.
+XP1,Avaliação das explicações,As explicações ajudaram a entender quais fatores contribuíram para as estimativas dos modelos.
+XP2,Avaliação das explicações,A apresentação das contribuições por grupo foi clara para mim.
+XP3,Avaliação das explicações,As informações sobre os limites dos modelos foram compreensíveis para mim.
+XC1,Um fator com maior importância no laboratório permite concluir que ele causou o resultado profissional? Justifique brevemente.,
+XC2,O que uma contribuição média negativa de um grupo representa no resultado do modelo?,
+XC3,"Se um modelo apresentar desempenho próximo ao modelo de referência, que cuidado você teria ao utilizar suas explicações?",
+XN1,O que impediu você de visualizar os resultados do XAI?,
+T1R,Tarefa 1 - Total de egressos e cursos,
+T2R,Tarefa 2 - Total de registros no recorte,
+T3R,Tarefa 3 - Categoria mais frequente,
+T4R,Tarefa 4 - Evidência de liderança ou gerência,
+T5R,Tarefa 5 - Comparação da AUC com a referência,
+T6R,Tarefa 6 - Fator mais importante e contribuição de um grupo,
+T7R,Tarefa 7 - Downloads e limitação identificada,

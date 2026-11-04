@@ -105,4 +105,6 @@ def classificar_cargo(cargo: str | None) -> str:
     for categoria, padroes in REGRAS:
         if any(re.search(p, t) for p in padroes):
             return categoria
-    return "Área não relacionada à Computação"
+    # Ausência de correspondência não demonstra atuação fora da Computação.
+    # A sugestão fica pendente de revisão, sem recodificar a base histórica.
+    return SEM_INFORMACAO

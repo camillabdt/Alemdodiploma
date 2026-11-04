@@ -4,8 +4,8 @@ Escolhas:
 - Tabelas 2×2 (curso × indicador, indicador × indicador): teste exato de Fisher,
   válido com qualquer frequência; efeito = coeficiente Phi (com sinal).
 - Tabelas maiores (curso × categoria): qui-quadrado de independência; efeito =
-  V de Cramér. Verifica-se o pressuposto de frequência esperada (no máximo 20%
-  das células com esperado < 5 e nenhuma < 1, critério de Cochran).
+  V de Cramér. Exige-se frequência esperada >= 5; caso contrário, p por Monte Carlo
+  com margens fixas, 19.999 reamostragens e semente registrada.
 - Tempo desde a conclusão entre grupos com e sem evidência: Mann-Whitney U
   (a variável é discreta e assimétrica, sem normalidade); efeito = correlação
   bisserial de postos.
@@ -46,19 +46,28 @@ def associacao(df: pd.DataFrame, linha: str, coluna: str) -> dict | None:
                 "pressuposto_ok": True, "aviso": ""}
     chi2, p, gl, esperado = stats.chi2_contingency(tab.values)
     prop_baixo = float((esperado < 5).mean())
-    ok = bool(prop_baixo <= 0.20 and esperado.min() >= 1)
+    # Critério conservador documentado em SciPy: todas as esperadas >= 5.
+    ok = bool(esperado.min() >= 5)
     v = math.sqrt(chi2 / (n * (min(tab.shape) - 1)))
-    aviso = "" if ok else (
-        f"{prop_baixo:.0%} das células têm frequência esperada < 5; "
-        "o qui-quadrado é aproximado. Interprete junto com a análise descritiva."
-    )
-    return {"teste": f"Qui-quadrado (gl={gl})", "n": n, "estatistica": float(chi2), "p": float(p),
+    teste = f"Qui-quadrado (gl={gl})"
+    aviso = ""
+    if not ok:
+        # Margens fixas e semente explícita permitem reproduzir a aproximação.
+        metodo = stats.MonteCarloMethod(n_resamples=19999, rng=np.random.default_rng(20261101))
+        resultado = stats.chi2_contingency(tab.values, correction=False, method=metodo)
+        p = resultado.pvalue
+        teste = "Qui-quadrado (p por Monte Carlo)"
+        aviso = (f"{prop_baixo:.0%} das células têm frequência esperada < 5. "
+                 "p estimado por 19.999 amostras com margens fixas; semente 20261101. "
+                 "A medida de efeito permanece descritiva; associação não demonstra causalidade.")
+    return {"teste": teste, "n": n, "estatistica": float(chi2), "p": float(p),
             "efeito": v, "medida_efeito": "V de Cramér", "pressuposto_ok": ok, "aviso": aviso}
 
 
 def comparar_tempo(df: pd.DataFrame, indicador: str, tempo: str = "Tempo_desde_Conclusao") -> dict | None:
     sim = df.loc[df[indicador] == 1, tempo]
     nao = df.loc[df[indicador] == 0, tempo]
+    sim, nao = sim.dropna(), nao.dropna()
     if len(sim) < 2 or len(nao) < 2:
         return None
     u, p = stats.mannwhitneyu(sim, nao, alternative="two-sided")
@@ -93,6 +102,8 @@ def regressao_logistica(df: pd.DataFrame, indicador: str, curso: str = "Curso_de
     y = base[indicador].astype(int)
     if base[curso].nunique() < 2 or y.nunique() < 2 or y.sum() < 5 or (1 - y).sum() < 5:
         return None
+    if referencia not in set(base[curso]):
+        referencia = sorted(base[curso].astype(str).unique())[0]
     outros = [c for c in base[curso].unique() if c != referencia]
     if len(outros) != 1:
         return None
@@ -105,6 +116,8 @@ def regressao_logistica(df: pd.DataFrame, indicador: str, curso: str = "Curso_de
             warnings.simplefilter("ignore")
             modelo = sm.Logit(y, X).fit(disp=False)
     except Exception:  # separação perfeita, matriz singular etc.
+        return None
+    if not modelo.mle_retvals.get("converged", False):
         return None
     ic = modelo.conf_int()
     linhas = []

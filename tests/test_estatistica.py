@@ -37,6 +37,9 @@ def test_aviso_quando_pressuposto_falha():
     base = pd.DataFrame({"a": ["x"] * 30 + ["y"] * 2 + ["z"] * 2, "b": ["p", "q"] * 17})
     r = stats.associacao(base, "a", "b")
     assert not r["pressuposto_ok"] and r["aviso"]
+    assert "Monte Carlo" in r["teste"]
+    assert 0 <= r["p"] <= 1
+    assert r["p"] == stats.associacao(base, "a", "b")["p"]
 
 
 @requer_base_real

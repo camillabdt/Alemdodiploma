@@ -1,9 +1,5 @@
 services:
-  painel:
+  alumni-view:
     build: .
-    container_name: painel-egressos
     ports:
-      - "8501:8501"
-    volumes:
-      - ./app:/app/app
-      - ./data/publico:/app/data/publico
+      - "127.0.0.1:8000:8000"

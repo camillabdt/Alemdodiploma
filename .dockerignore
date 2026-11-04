@@ -1,7 +1,9 @@
-data/privado
-.venv
 .git
-__pycache__
+.venv
+**/node_modules
+**/dist
+**/__pycache__
 .pytest_cache
-tests
-docs
+data/privado
+data/publico/dataset_publico.csv
+.streamlit

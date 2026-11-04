@@ -3,7 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 # Base real sem identificadores: gerada pelo pipeline e NUNCA versionada
-# (em produção, vem dos secrets do Streamlit Cloud).
+# A versão React recebe a base preparada por importação de sessão.
 DADOS_PUBLICOS = ROOT / "data" / "publico" / "dataset_publico.csv"
 # Base fictícia de demonstração, versionada no repositório público.
 DADOS_EXEMPLO = ROOT / "data" / "exemplo" / "dataset_exemplo.csv"

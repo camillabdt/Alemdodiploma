@@ -9,7 +9,6 @@ Entradas (NUNCA versionadas):
 
 Saídas:
     data/publico/dataset_publico.csv        base sem quase-identificadores diretos (NÃO versionada)
-    .streamlit/secrets.toml                 a mesma base, no formato de secrets do Streamlit (NÃO versionado)
     data/publico/metadados.json             data de referência, contagens e cobertura
     data/privado/divergencias_codebook.csv  cargos em que a codificação manual difere da regra
 
@@ -35,7 +34,6 @@ ENTRADA_PADRAO = ROOT / "data" / "privado" / "dataset_gold.csv"
 SAIDA_DADOS = ROOT / "data" / "publico" / "dataset_publico.csv"
 SAIDA_META = ROOT / "data" / "publico" / "metadados.json"
 SAIDA_DIVERGENCIAS = ROOT / "data" / "privado" / "divergencias_codebook.csv"
-SAIDA_SECRETS = ROOT / ".streamlit" / "secrets.toml"
 
 # População institucional (registros da UNIPAMPA). Atualize se a lista mudar.
 POPULACAO = {"Ciência da Computação": 171, "Engenharia de Software": 158}
@@ -132,19 +130,6 @@ def metadados(df_priv: pd.DataFrame, df_pub: pd.DataFrame, ano_referencia: int) 
     }
 
 
-def escrever_secrets(publico: pd.DataFrame) -> None:
-    """Grava a base real em .streamlit/secrets.toml (fora do Git).
-
-    O conteúdo desse arquivo é colado em Settings → Secrets no Streamlit Cloud,
-    para que o app publicado leia os dados reais sem que eles estejam no repositório.
-    """
-    csv = publico.to_csv(index=False)
-    if "\'\'\'" in csv:
-        raise ValueError("A base contém três aspas simples seguidas; não é possível gravar em TOML literal.")
-    SAIDA_SECRETS.parent.mkdir(parents=True, exist_ok=True)
-    SAIDA_SECRETS.write_text(f"[dados]\ncsv = \'\'\'\n{csv}\'\'\'\n", encoding="utf-8")
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--entrada", type=Path, default=ENTRADA_PADRAO)
@@ -163,14 +148,12 @@ def main() -> None:
         encoding="utf-8",
     )
     div.to_csv(SAIDA_DIVERGENCIAS, index=False, encoding="utf-8-sig")
-    escrever_secrets(publico)
 
     concord = 1 - len(div) / len(df)
     print(f"Base pública: {len(publico)} registros -> {SAIDA_DADOS.relative_to(ROOT)}")
     print(f"Metadados -> {SAIDA_META.relative_to(ROOT)}")
     print(f"Concordância regra × codificação manual: {concord:.1%} ({len(div)} divergências)")
     print(f"Revise as divergências em {SAIDA_DIVERGENCIAS.relative_to(ROOT)}")
-    print(f"Secrets para o Streamlit Cloud -> {SAIDA_SECRETS.relative_to(ROOT)} (copie o conteúdo em Settings → Secrets)")
 
 
 if __name__ == "__main__":

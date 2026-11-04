@@ -20,6 +20,7 @@ import numpy as np
 import pandas as pd
 
 from app.core import stats
+from app.core.data import opcoes
 from app.core.config import CURSOS, FAIXAS, INDICADORES, MIN_GRUPO, MIN_TOTAL, PERIODOS, ROTULOS
 from app.core.privacy import cruzada, frequencias, mascarar, sem_informacao, taxa_por_grupo
 
@@ -59,7 +60,7 @@ ORDENS = {"Periodo_Conclusao": PERIODOS, "Faixa_Etaria": FAIXAS}
 def _freq(df, col):
     tab, ocultas = frequencias(df, col)
     if col in ORDENS:
-        tab = tab.set_index(col).reindex([v for v in ORDENS[col] if v in set(tab[col])]).reset_index()
+        tab = tab.set_index(col).reindex(opcoes(tab, col, ORDENS[col])).reset_index()
     tab = tab.rename(columns={col: ROTULOS.get(col, col), "Percentual": "Percentual (%)"})
     nota = f"{ocultas} categoria(s) com menos de {MIN_GRUPO} egressos omitida(s)." if ocultas else ""
     return tab, nota
@@ -85,8 +86,7 @@ def montar(df: pd.DataFrame, recorte: dict, origem_dados: str = "real",
     # 1. Resumo
     resumo = pd.DataFrame([
         ("Egressos no recorte", n),
-        (CURSOS[0], mascarar(cc)),
-        (CURSOS[1], mascarar(n - cc)),
+        *[(c, mascarar(int((df["Curso_de_Graduacao"] == c).sum()))) for c in opcoes(df, "Curso_de_Graduacao", CURSOS)],
         ("Anos de formado (mediana)", float(df["Tempo_desde_Conclusao"].median())),
         *[(nome, f"{df[ind].mean() * 100:.1f}%") for ind, nome in INDICADORES.items()],
     ], columns=["Indicador", "Valor"])
@@ -209,7 +209,7 @@ def montar(df: pd.DataFrame, recorte: dict, origem_dados: str = "real",
 # --------------------------------------------------------------------------- utilidades
 def _nota_privacidade() -> str:
     return (f"Dados agregados. Grupos com menos de {MIN_GRUPO} egressos aparecem como \"<{MIN_GRUPO}\" ou são "
-            "omitidos. Pesquisa aprovada pelo CEP (CAAE 87973525.8.0000.5323).")
+            "omitidos. Dados agregados não constituem garantia de anonimato contra todas as formas de cruzamento.")
 
 
 def _descricao_recorte(rel: Relatorio) -> str:
@@ -233,7 +233,7 @@ def _slug(texto: str) -> str:
 def para_json(rel: Relatorio) -> bytes:
     doc = {
         "titulo": TITULO, "gerado_em": rel.gerado_em, "recorte": rel.recorte,
-        "dados": "fictícios (demonstração)" if rel.origem_dados == "exemplo" else "base real preliminar",
+        "dados": {"exemplo": "fictícios (demonstração)", "importada": "base importada pela coordenação; validação não verificada"}.get(rel.origem_dados, "base real preliminar"),
         "privacidade": _nota_privacidade(),
         "secoes": [{
             "titulo": s.titulo, "texto": s.texto,

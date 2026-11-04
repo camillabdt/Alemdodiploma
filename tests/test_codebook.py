@@ -18,7 +18,9 @@ from pipeline.codebook import classificar_cargo, normalizar
     ("Posdoc", "Ensino/Pesquisa"),
     ("Analista de TI", "Outros em Computação/TI"),
     ("Engenheiro Civil", "Área não relacionada à Computação"),
-    ("Auxiliar administrativo", "Área não relacionada à Computação"),
+    ("Auxiliar administrativo", "Sem Informação"),  # revisão humana necessária
+    ("Especialista", "Sem Informação"),
+    ("Consultor independente", "Sem Informação"),
     ("Sem Informação", "Sem Informação"),
 ])
 def test_classificacao(cargo, esperado):

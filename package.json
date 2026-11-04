@@ -1,0 +1,8 @@
+{
+  "name": "alumni-view-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm --prefix frontend run build"
+  }
+}

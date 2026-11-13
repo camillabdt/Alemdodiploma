@@ -1762,3 +1762,7 @@ main{max-width:1600px;}
 .model-selector > span { font-size: .8rem; font-weight: 700; color: var(--text, #1f2a2e); }
 .model-selector select { width: 100%; }
 @media (max-width: 640px) { .model-selector { min-width: 0; width: 100%; } }
+
+/* Identidade visual da Alumni View, com fundo transparente. */
+.brand { padding: 0 0 30px; }
+.brand-logo { display: block; width: 100%; max-width: 244px; height: auto; object-fit: contain; }

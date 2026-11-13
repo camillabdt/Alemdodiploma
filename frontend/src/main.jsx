@@ -1128,16 +1128,7 @@ function App() {
             navigate("overview");
           }}
         >
-          <span className="brand-icon">
-            <GraduationCap size={26} />
-          </span>
-          <span>
-            <strong>
-              alumni<span>view</span>
-              <i />
-            </strong>
-            <small>ALÉM DO DIPLOMA</small>
-          </span>
+          <img className="brand-logo" src="/alumni-view-logo.webp" alt="Alumni View — Além do Diploma" width="2172" height="724" />
         </a>
         <div className="workspace-label">ESPAÇO DE ANÁLISE</div>
         <nav aria-label="Principal">

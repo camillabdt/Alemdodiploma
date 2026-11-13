@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import io
+import base64
+import binascii
 import json
 import math
 import os
@@ -11,6 +13,7 @@ import time
 from dataclasses import dataclass, field
 from itertools import combinations
 from pathlib import Path
+from functools import lru_cache
 
 import pandas as pd
 from fastapi import FastAPI, File, Form, Header, HTTPException, UploadFile
@@ -23,7 +26,7 @@ from app.core import privacy, relatorio, stats
 from app.core.config import DADOS_EXEMPLO, INDICADORES, MIN_GRUPO, MIN_TOTAL, ROOT, ROTULOS
 from app.core.data import COLUNAS_ESPERADAS, ler_dados
 
-app = FastAPI(title="Alumni View", version="3.0.0")
+app = FastAPI(title="Alumni View", version="3.1.0")
 # Sem configuração, o uso continua no mesmo endereço da API.
 # Em hospedagem separada, liberar somente as origens da interface.
 ALLOWED_ORIGINS = [origin.strip().rstrip("/") for origin in
@@ -119,6 +122,10 @@ def remember(session):
             raise HTTPException(503, "Limite de sessões atingido. Tente novamente mais tarde.")
         token = secrets.token_urlsafe(32)
         sessions[token] = session
+    return session_payload(session, token)
+
+
+def session_payload(session, token):
     options = {column: sorted(str(x) for x in session.df[column].dropna().unique()) for column in FILTERS}
     return {"reference_year": int((session.df.Ano_de_Conclusao + session.df.Tempo_desde_Conclusao).iloc[0]),
             "token": token, "source": session.source, "institution": session.institution,
@@ -135,7 +142,7 @@ def get_session(authorization):
             del sessions[token]
             session = None
     if session is None:
-        raise HTTPException(401, "Sessão encerrada. Importe o CSV novamente ou abra a demonstração.")
+        raise HTTPException(401, "Sessão encerrada. Reabra a base do estudo para continuar.")
     return session
 
 
@@ -199,6 +206,40 @@ def health():
 @app.post("/api/demo")
 def demo():
     return remember(Session(validate(ler_dados(DADOS_EXEMPLO)), "exemplo", "Base de demonstração", {}))
+
+
+@lru_cache(maxsize=1)
+def study_dataframe():
+    """Base do estudo somente no servidor; nunca embutida no bundle da interface."""
+    encoded = os.environ.get("ALUMNI_STUDY_CSV_BASE64", "").strip()
+    if encoded:
+        if len(encoded) > 4 * ((MAX_BYTES + 2) // 3):
+            raise ValueError("Base configurada acima do limite.")
+        raw = base64.b64decode(encoded, validate=True)
+        if len(raw) > MAX_BYTES:
+            raise ValueError("Base configurada acima do limite.")
+        # Há arquivos preparados com mais de um marcador BOM no primeiro campo.
+        text = raw.decode("utf-8-sig").lstrip("\ufeff")
+        return validate(ler_dados(io.StringIO(text)))
+    path = Path(os.environ.get("ALUMNI_STUDY_CSV_PATH", str(ROOT / "data/publico/dataset_publico.csv")))
+    return validate(ler_dados(io.StringIO(path.read_text(encoding="utf-8-sig").lstrip("\ufeff"))))
+
+
+@app.post("/api/study")
+def study(authorization: str | None = Header(default=None)):
+    # Recarregar a página no mesmo navegador reaproveita a sessão ainda válida.
+    token = authorization.removeprefix("Bearer ") if authorization else ""
+    with lock:
+        previous = sessions.get(token)
+        if previous and previous.source == "estudo" and time.monotonic() - previous.created <= SESSION_TTL:
+            return session_payload(previous, token)
+    try:
+        df = study_dataframe().copy(deep=True)
+    except (OSError, ValueError, UnicodeError, binascii.Error, pd.errors.ParserError) as exc:
+        # A resposta não inclui caminhos, conteúdo ou valores de configuração.
+        raise HTTPException(503, "A base do estudo está indisponível. Tente novamente ou contate a pesquisadora.") from exc
+    institution = os.environ.get("ALUMNI_STUDY_INSTITUTION", "UNIPAMPA · Campus Alegrete")
+    return remember(Session(df, "estudo", institution, {}))
 
 
 @app.delete("/api/session")

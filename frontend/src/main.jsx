@@ -13,7 +13,6 @@ import {
   ArrowUpRight,
   ArrowRight,
   Download,
-  Upload,
   SlidersHorizontal,
   X,
   Check,
@@ -22,10 +21,8 @@ import {
   ShieldCheck,
   Info,
   Menu,
-  FileSpreadsheet,
   LoaderCircle,
   CircleHelp,
-  LogOut,
   Clock3,
   Users,
   Building2,
@@ -33,7 +30,6 @@ import {
   TrendingUp,
 } from "lucide-react";
 import "./styles.css";
-import Papa from "papaparse";
 
 const columns = {
   Curso_de_Graduacao: "Curso",
@@ -84,7 +80,7 @@ const pageCopy = {
   ],
   data: [
     "Uma boa análise começa pela base",
-    "Importe um CSV preparado e configure o contexto da sua instituição.",
+    "Consulte a base do estudo, carregada automaticamente ao abrir a plataforma.",
   ],
   methodology: [
     "Como interpretar este painel",
@@ -633,7 +629,7 @@ function Explanations({ session }) {
         <div className="metric-guide"><p><b>AUC ROC</b> mede discriminação; 0,5 é a referência sem discriminação.</p><p><b>AP</b> resume precisão e recuperação. Compare com a referência de prevalência.</p><p><b>Brier</b> mede erro das probabilidades. Menor é melhor.</p></div>
         {result.warnings.filter(w=>w.startsWith('Ao menos')).map(w=><Notice key={w}>{w}</Notice>)}
       </Panel>
-      <div className="section-heading"><div><h2>02 · Como os fatores contribuíram?</h2><p>Contribuições em pontos percentuais para a estimativa de {selected.toLowerCase()}.</p></div><select aria-label="Modelo explicável" value={model} onChange={e=>setModel(e.target.value)}>{Object.keys(result.auc).map(n=><option key={n}>{n}</option>)}</select></div>
+      <div className="section-heading"><div><h2>02 · Como os fatores contribuíram?</h2><p>Contribuições em pontos percentuais para a estimativa de {selected.toLowerCase()}.</p></div><label className="model-selector"><span>Modelo</span><select aria-label="Modelo" value={model} onChange={e=>setModel(e.target.value)}>{Object.keys(result.auc).map(n=><option key={n} value={n}>{n === "Random forest" ? "Random Forest" : n}</option>)}</select></label></div>
       {result.warnings.filter(w=>w.startsWith('Fatores limitados')).map(w=><Notice key={w}>{w}</Notice>)}
       <div className="panel-grid">
         <Panel title="Importância global" subtitle="Média de |Shapley|. Mostra magnitude, sem direção.">
@@ -655,154 +651,25 @@ function Explanations({ session }) {
   </>;
 }
 
-function DataPage({ onLoad, session, onForget, onDemo }) {
-  const [file, setFile] = useState(null),
-    [institution, setInstitution] = useState(""),
-    [population, setPopulation] = useState({}),
-    [courses, setCourses] = useState([]),
-    [busy, setBusy] = useState(false),
-    [error, setError] = useState("");
-  async function submit(e) {
-    e.preventDefault();
-    if (!file) return;
-    setBusy(true);
-    setError("");
-    try {
-      const body = new FormData();
-      body.append("file", file);
-      body.append("institution", institution);
-      body.append("population", JSON.stringify(Object.fromEntries(Object.entries(population).filter(([,v])=>v!=="").map(([k,v])=>[k,Number(v)]))));
-      const response = await api("/import", { method: "POST", body });
-      await onLoad(await response.json());
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setBusy(false);
-    }
-  }
+function DataPage({ session, onReload }) {
   return (
-    <>
-      <div className="panel-grid import-grid">
-        <Panel
-          title="Importar base de egressos"
-          subtitle="CSV preparado · até 5 MB e 10.000 registros"
-        >
-          <form onSubmit={submit}>
-            <label className="upload-area">
-              <FileSpreadsheet size={34} />
-              <strong>{file ? file.name : "Selecione seu arquivo CSV"}</strong>
-              <span>
-                Separador vírgula ou ponto e vírgula · codificação UTF-8
-              </span>
-              <input
-                aria-label="Arquivo CSV"
-                type="file"
-                accept=".csv,text/csv"
-                required
-                onChange={async (e) => {
-                  const next=e.target.files?.[0] || null; setError(""); setPopulation({}); setCourses([]);
-                  if(next && next.size>5*1024*1024){setError("O CSV excede o limite de 5 MB.");setFile(null);return;}
-                  setFile(next);
-                  if(next){ const parsed=Papa.parse(await next.text(),{header:true,skipEmptyLines:true});
-                    setCourses([...new Set(parsed.data.map(r=>r.Curso_de_Graduacao?.trim()).filter(Boolean))].sort()); }
-                }}
-              />
-            </label>
-            <label className="form-label">
-              Instituição ou contexto da análise
-              <input
-                placeholder="Ex.: UNIPAMPA · Campus Alegrete"
-                maxLength={120}
-                value={institution}
-                onChange={(e) => setInstitution(e.target.value)}
-              />
-            </label>
-            <fieldset className="population-fields"><legend>População de referência por curso <small>Opcional</small></legend>
-              <p className="chart-note">Se você conhece o total institucional de egressos, informe-o para calcular a cobertura. Sem esse dado, o painel mostra apenas a base analisada.</p>
-              {!courses.length && <p className="chart-note">Selecione o CSV para listar os cursos.</p>}
-              {courses.map(course=><label className="form-label" key={course}>{course}<input type="number" min="1" step="1" placeholder="Total institucional" value={population[course]??""} onChange={e=>setPopulation({...population,[course]:e.target.value})}/></label>)}
-            </fieldset>
-            {error && <Notice kind="error">{error}</Notice>}
-            <button className="primary" type="submit" disabled={busy || !file}>
-              {busy ? (
-                <LoaderCircle size={17} className="spin" />
-              ) : (
-                <Upload size={17} />
-              )}{" "}
-              {busy ? "Validando os dados…" : "Importar e abrir painel"}
-            </button>
-          </form>
-        </Panel>
-        <div>
-          <Panel
-            title="Prepare os dados antes de começar"
-            subtitle="A ferramenta recebe uma base analítica, com indicadores já codificados."
-          >
-            <ol className="steps">
-              <li>
-                <span>1</span>
-                <div>
-                  <strong>Use o formato esperado</strong>
-                  <p>
-                    Baixe o modelo e mantenha os nomes das colunas. Campos
-                    obrigatórios precisam estar preenchidos.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span>2</span>
-                <div>
-                  <strong>Classifique as informações</strong>
-                  <p>
-                    Defina categoria do cargo, tipo de instituição e indicadores
-                    0/1. Os indicadores seguem o protocolo de codificação da pesquisa.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span>3</span>
-                <div>
-                  <strong>Remova identificadores</strong>
-                  <p>
-                    O CSV usa um código por egresso. Nomes, URLs de perfis,
-                    empresas e cargos por extenso não devem ser importados.
-                  </p>
-                </div>
-              </li>
-            </ol>
-            <a className="secondary" href={apiUrl("/template")} download>
-              <Download size={16} /> Baixar modelo CSV
-            </a>
-            <button type="button" className="text-button demo-button" onClick={onDemo}><RefreshCcw size={15}/> Usar demonstração fictícia</button>
-          </Panel>
-          {session && (
-            <Panel title="Base ativa" subtitle={session.institution}>
-              <div className="active-base">
-                <Database size={23} />
-                <div>
-                  <strong>{fmt(session.total)} registros</strong>
-                  <p>
-                    {session.source === "exemplo"
-                      ? "Dados fictícios de demonstração"
-                      : "Base importada nesta sessão"}
-                  </p>
-                </div>
-              </div>
-              <button className="text-button danger" onClick={onForget}>
-                <LogOut size={15} /> Encerrar e descartar a sessão
-              </button>
-            </Panel>
-          )}
-        </div>
-      </div>
-      <Notice>
-        O arquivo é enviado à API Python e permanece em memória durante a
-        sessão, que expira após quatro horas. A sessão é descartada ao encerrar
-        ou reiniciar o servidor. A base não é salva no navegador nem no
-        repositório. A implantação para acesso público exige autenticação e uma
-        política de armazenamento própria.
-      </Notice>
-    </>
+    <div className="panel-grid">
+      <Panel title="Base do estudo" subtitle="Carregamento automático">
+        <p className="body-copy">A mesma base é utilizada por todos os participantes desta avaliação. Não é necessário selecionar ou enviar um arquivo.</p>
+        {session ? <dl className="definitions">
+          <dt>Instituição</dt><dd>{session.institution}</dd>
+          <dt>Registros</dt><dd>{fmt(session.total)}</dd>
+          <dt>Cursos</dt><dd>{session.options.Curso_de_Graduacao.join(" · ")}</dd>
+          <dt>Período de conclusão</dt><dd>{session.years[0]} a {session.years[1]}</dd>
+          <dt>Ano de referência do tempo desde a conclusão</dt><dd>{session.reference_year}</dd>
+        </dl> : <Notice>A base ainda não está disponível. Tente carregá-la novamente.</Notice>}
+        <button className="secondary" onClick={onReload}><RefreshCcw size={16}/> Reabrir base do estudo</button>
+      </Panel>
+      <Panel title="Como utilizar os dados">
+        <p className="body-copy">Explore a Visão geral, aplique filtros e consulte os indicadores. O Laboratório XAI utiliza automaticamente essa mesma base completa.</p>
+        <p className="body-copy">Os resultados são apresentados de forma agregada. O total de registros é contado pelo sistema; a cobertura institucional não é estimada sem os totais da população de referência.</p>
+      </Panel>
+    </div>
   );
 }
 function Methodology() {
@@ -874,9 +741,9 @@ function Methodology() {
         <p className="body-copy">
           A Alumni View integra o projeto Além do Diploma, sobre trajetórias
           profissionais de egressos. O estudo de origem considera Ciência da
-          Computação e Engenharia de Software da UNIPAMPA. A interface aceita
-          outros cursos, mas as regras de classificação, a coleta e a
-          interpretação precisam ser adequadas à realidade de cada instituição.
+          Computação e Engenharia de Software da UNIPAMPA. Nesta avaliação,
+          a base do estudo é carregada automaticamente e permanece a mesma
+          para todos os participantes.
         </p>
         <p className="body-copy">
           Os cálculos estatísticos continuam em Python. Os modelos explicáveis
@@ -886,7 +753,7 @@ function Methodology() {
           saída dos modelos, não causas dos resultados.
         </p>
       </Panel>
-      <Panel title="Colunas do CSV">
+      <Panel title="Variáveis da base do estudo">
         <p className="body-copy">
           ID_Egresso, Curso_de_Graduacao, Ano_de_Conclusao, Periodo_Conclusao,
           Tempo_desde_Conclusao, Genero, Faixa_Etaria, UF_Nascimento,
@@ -895,9 +762,8 @@ function Methodology() {
           e Indicador_Mudanca_Area.
         </p>
         <p className="chart-note">
-          Use 0 ou 1 nos quatro indicadores. Ano e tempo desde a conclusão devem
-          ser inteiros. O período deve ser preparado previamente no CSV; a
-          importação não o recalcula.
+          Os quatro indicadores foram preparados com valores 0 ou 1, conforme o protocolo da pesquisa.
+          O tempo desde a conclusão se refere ao ano indicado na base, e não ao tempo até um evento profissional.
         </p>
       </Panel>
     </>
@@ -1163,16 +1029,19 @@ function App() {
     setData(null);
     setPage("overview");
     setError("");
-    if (previous)
+    try { sessionStorage.setItem("alumni-study-token", next.token); } catch {}
+    if (previous && previous.token !== next.token)
       api("/session", { method: "DELETE", token: previous.token }).catch(
         () => {},
       );
   }
-  async function loadDemo() {
+  async function loadStudy() {
     setLoading(true);
     setError("");
     try {
-      const r = await api("/demo", { method: "POST" });
+      let savedToken = "";
+      try { savedToken = sessionStorage.getItem("alumni-study-token") || ""; } catch {}
+      const r = await api("/study", { method: "POST", token: savedToken });
       await loadSession(await r.json());
     } catch (e) {
       setError(`Não foi possível conectar à API. ${e.message}`);
@@ -1180,7 +1049,7 @@ function App() {
     }
   }
   useEffect(() => {
-    loadDemo();
+    loadStudy();
   }, []);
   const query = { filters, years, indicators };
   const queryKey = JSON.stringify(query);
@@ -1238,16 +1107,6 @@ function App() {
     nav.find((n) => n[0] === page)?.[1] ||
     { data: "Base de dados", methodology: "Metodologia" }[page];
   const noFilters = ["data", "methodology", "ai"].includes(page);
-  async function forget() {
-    try {
-      await api("/session", { method: "DELETE", token: session.token });
-      setSession(null);
-      setData(null);
-      setPage("data");
-    } catch (e) {
-      setError(e.message);
-    }
-  }
   function navigate(id) {
     setPage(id);
     setMobile(false);
@@ -1395,20 +1254,6 @@ function App() {
               </div>
             )}
           </div>
-          {session?.source === "exemplo" && page !== "data" && (
-            <div className="demo-notice">
-              <span>
-                <span className="demo-icon">
-                  <Info size={15} />
-                </span>{" "}
-                Você está explorando{" "}
-                <strong>dados fictícios de demonstração.</strong>
-              </span>
-              <button onClick={() => navigate("data")}>
-                Importar minha base <ArrowRight size={15} />
-              </button>
-            </div>
-          )}
           {!noFilters && session && (
             <div className="filter-summary">
               <span>
@@ -1438,17 +1283,15 @@ function App() {
           {error && (
             <Notice kind="error">
               {error}{" "}
-              <button className="text-button" onClick={loadDemo}>
-                Abrir demonstração
+              <button className="text-button" onClick={loadStudy}>
+                Reabrir base do estudo
               </button>
             </Notice>
           )}
           {page === "data" ? (
             <DataPage
-              onLoad={loadSession}
               session={session}
-              onForget={forget}
-              onDemo={loadDemo}
+              onReload={loadStudy}
             />
           ) : page === "methodology" ? (
             <Methodology />
@@ -1457,7 +1300,7 @@ function App() {
               <Explanations session={session} />
             ) : (
               <Empty>
-                Abra uma demonstração ou importe sua base para começar.
+                A base do estudo será carregada automaticamente. Se necessário, use “Reabrir base do estudo”.
               </Empty>
             )
           ) : loading ? (
@@ -1486,9 +1329,9 @@ function App() {
             )
           ) : !error ? (
             <Empty>
-              Importe sua base ou{" "}
-              <button className="text-button" onClick={loadDemo}>
-                abra a demonstração
+              A base do estudo não foi carregada. Você pode{" "}
+              <button className="text-button" onClick={loadStudy}>
+                tentar novamente
               </button>
               .
             </Empty>

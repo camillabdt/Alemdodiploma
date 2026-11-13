@@ -29,16 +29,16 @@ Abra http://localhost:8000. O script compila a interface na primeira execução 
 
 ## Explorar o XAI
 
-1. Abra a demonstração ou importe um CSV preparado em **Base de dados**.
+1. Abra a plataforma: a base do estudo é carregada automaticamente, sem envio de CSV pelo participante.
 2. No **Laboratório XAI**, escolha o indicador e clique em **Calcular e comparar**.
-3. Compare as métricas com a referência; escolha o modelo e consulte os fatores e grupos.
+3. Compare as métricas com a referência; no campo **Modelo**, escolha **Regressão logística** ou **Random Forest** e consulte os fatores e grupos.
 4. Registre limitações e exporte a análise XAI. Os relatórios do painel são exportados separadamente.
 
 O laboratório usa a **base completa da sessão**. Os filtros das páginas descritivas não alteram o treinamento. Limites operacionais: 30 a 1.000 registros e pelo menos dez em cada classe; são escolhas desta implementação, não suficiência estatística universal.
 
 ## Preparar uma coleta para teste restrito
 
-O modelo CSV disponível na plataforma exige indicadores 0/1 e campos padronizados. Para uma coleta com as colunas do formulário original:
+A preparação da base é responsabilidade da pesquisadora; não é uma etapa do participante da avaliação. O leitor exige indicadores 0/1 e campos padronizados. Para uma coleta com as colunas do formulário original:
 
 ```bash
 .venv/bin/python -m scripts.preparar_csv_coleta --entrada /caminho/coleta.csv --ano-referencia 2026
@@ -46,7 +46,11 @@ O modelo CSV disponível na plataforma exige indicadores 0/1 e campos padronizad
 
 A preparação preserva o original, retira identificadores diretos e separa casos incompletos em um registro de revisão. “Não informado” não vira zero; anos ausentes não são estimados. Campos não disponíveis recebem **Sem Informação**, e a categoria do cargo é apenas uma sugestão por regras que requer revisão manual. O subconjunto de casos completos é para teste exploratório e pode introduzir viés.
 
-CSV preparado e auditoria ficam em `data/privado/`, ignorado pelo Git. O CSV importado continua sendo dado individual, mesmo sem nomes. Só a base fictícia integra o repositório. No servidor, as sessões ficam em memória e expiram após quatro horas ou reinício.
+CSV preparado e auditoria ficam fora do repositório público. A base do estudo continua sendo dado individual, mesmo sem nomes. Só a base fictícia integra o Git. No servidor, as sessões ficam em memória e expiram após quatro horas ou reinício. A configuração da base permanece no ambiente do serviço e é recarregada para uma nova sessão.
+
+### Configurar a base automática
+
+O servidor lê `ALUMNI_STUDY_CSV_BASE64` (conteúdo UTF-8 em Base64) ou `ALUMNI_STUDY_CSV_PATH` (caminho privado, por exemplo `/etc/secrets/alumni-study.csv`). `ALUMNI_STUDY_INSTITUTION` define o nome exibido. Sem configuração válida, `/api/study` retorna indisponibilidade e não substitui silenciosamente a base por uma demonstração. Não use variáveis com prefixo `VITE_` para armazenar a base: elas podem integrar o bundle público. A interface e as exportações recebem somente resultados agregados. As APIs de importação e demonstração permanecem para compatibilidade e testes, sem controles na interface da avaliação.
 
 ## Organização
 

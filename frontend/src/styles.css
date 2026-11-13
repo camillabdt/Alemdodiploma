@@ -1756,3 +1756,9 @@ main{max-width:1600px;}
 @media(max-width:600px){.xai-intro{padding:24px;}.xai-intro h2{font-size:24px;}.xai-intro p{font-size:13px;}.xai-steps{display:grid;gap:12px;}.signed-row{grid-template-columns:minmax(65px,.8fr) minmax(55px,1fr) 65px;gap:6px;}.signed-row strong{font-size:10px;}.xai-context div>span{font-size:8px;}.xai-context strong{font-size:13px;}.population-fields .form-label{display:grid;}.population-fields input{max-width:none;}.demo-notice{font-size:12px;}}
 
 .demo-button{margin-top:18px;display:flex;align-items:center;gap:8px;font-size:13px;}
+
+/* Seletor com rótulo visível, inclusive em telas pequenas. */
+.model-selector { display: flex; flex-direction: column; gap: .4rem; min-width: 15rem; }
+.model-selector > span { font-size: .8rem; font-weight: 700; color: var(--text, #1f2a2e); }
+.model-selector select { width: 100%; }
+@media (max-width: 640px) { .model-selector { min-width: 0; width: 100%; } }

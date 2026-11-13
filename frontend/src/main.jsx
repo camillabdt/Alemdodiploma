@@ -1238,12 +1238,12 @@ function App() {
               <h1>{pageCopy[page][0]}</h1>
               <p>{pageCopy[page][1]}</p>
             </div>
-            {!noFilters && session && (
+            {session && !["data", "methodology"].includes(page) && (
               <div className="heading-actions">
-                <button className="secondary" onClick={() => setDrawer(true)}>
+                {!noFilters && <button className="secondary" onClick={() => setDrawer(true)}>
                   <SlidersHorizontal size={16} /> Filtros{" "}
                   {active > 0 && <b className="count-badge">{active}</b>}
-                </button>
+                </button>}
                 <button
                   className="primary"
                   disabled={!data || data.blocked || loading}

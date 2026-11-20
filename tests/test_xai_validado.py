@@ -26,10 +26,10 @@ def test_fatores_ausentes_sao_identificados_sem_alegar_irrelevancia(df_exemplo):
     df['Tipo_Instituicao'] = 'Sem Informação'
     result = xai.explicar_validado(df, 'Indicador_Lideranca', repeticoes=1, tamanho_fundo=6)
     qualidade = {q['factor']: q['status'] for q in result['factor_quality']}
-    assert qualidade['UF de nascimento'] == qualidade['Tipo de instituição'] == 'sem informação'
+    assert qualidade['Origem'] == qualidade['Tipo de instituição'] == 'sem informação'
     assert any('não demonstra irrelevância' in w for w in result['warnings'])
     for row in result['importance']:
-        if row['Fator'] in ['UF de nascimento', 'Tipo de instituição']:
+        if row['Fator'] in ['Origem', 'Tipo de instituição']:
             assert all(abs(row[nome]) < 1e-10 for nome in result['auc'])
 
 

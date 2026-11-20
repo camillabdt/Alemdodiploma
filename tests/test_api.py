@@ -123,7 +123,7 @@ def test_explanations_http_and_cache(client):
     assert result.status_code == 200
     data = result.json()
     assert set(data['auc']) == {'Regressão logística', 'Random forest'}
-    assert {r['Fator'] for r in data['importance']} == {'Curso', 'Anos de formado', 'Origem', 'Tipo de instituição'}
+    assert {r['Fator'] for r in data['importance']} == {'Curso', 'Tempo desde a conclusão', 'UF de nascimento', 'Tipo de instituição'}
     assert 'ID_Egresso' not in result.text
     again = client.post('/api/explanations/Indicador_Lideranca', headers=headers)
     assert again.json() == data
@@ -141,7 +141,7 @@ def test_static_frontend_served_after_build(client):
 def test_sem_rotas_busca_ou_streamlit(client):
     schema=client.get('/openapi.json').json()
     assert not any('search' in p or 'busca' in p or 'linkedin' in p for p in schema['paths'])
-    assert schema['info']['version'] == '3.0.0'
+    assert schema['info']['version'] == '3.1.0'
 
 
 def test_import_rejeita_ano_referencia_inconsistente(client, df_exemplo):

@@ -580,7 +580,7 @@ function Explanations({ session }) {
   const [indicator, setIndicator] = useState("Indicador_Lideranca");
   const [result, setResult] = useState(null), [error, setError] = useState("");
   const [busy, setBusy] = useState(false), [exportBusy, setExportBusy] = useState(false);
-  const [model, setModel] = useState("Regressão logística"), [factor, setFactor] = useState("Anos de formado");
+  const [model, setModel] = useState("Regressão logística"), [factor, setFactor] = useState("Tempo desde a conclusão");
   const request = useRef(0);
   useEffect(() => {
     request.current++; setResult(null); setError(""); setBusy(false);

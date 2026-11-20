@@ -87,7 +87,7 @@ def montar(df: pd.DataFrame, recorte: dict, origem_dados: str = "real",
     resumo = pd.DataFrame([
         ("Egressos no recorte", n),
         *[(c, mascarar(int((df["Curso_de_Graduacao"] == c).sum()))) for c in opcoes(df, "Curso_de_Graduacao", CURSOS)],
-        ("Anos de formado (mediana)", float(df["Tempo_desde_Conclusao"].median())),
+        ("Tempo desde a conclusão (mediana)", float(df["Tempo_desde_Conclusao"].median())),
         *[(nome, f"{df[ind].mean() * 100:.1f}%") for ind, nome in INDICADORES.items()],
     ], columns=["Indicador", "Valor"])
     secoes.append(Secao("Resumo", tabelas=[Tabela("resumo", "Números principais", resumo)]))
@@ -160,7 +160,7 @@ def montar(df: pd.DataFrame, recorte: dict, origem_dados: str = "real",
     if linhas:
         tt = pd.DataFrame(linhas)
         tt["p ajustado (Holm)"] = [stats.formatar_p(p) for p in stats.holm(tt["_p"].tolist())]
-        tempo.append(Tabela("tempo_mann_whitney", "Anos de formado, com e sem evidência (Mann-Whitney)", tt.drop(columns="_p")))
+        tempo.append(Tabela("tempo_mann_whitney", "Tempo desde a conclusão, com e sem evidência (Mann-Whitney)", tt.drop(columns="_p")))
     per = []
     for ind, nome in INDICADORES.items():
         t = taxa_por_grupo(df, "Periodo_Conclusao", ind)

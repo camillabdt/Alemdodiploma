@@ -36,7 +36,7 @@ ALVOS = {
     "Indicador_Progressao": "Progressão interna",
 }
 
-FATORES = ["Curso", "Anos de formado", "Origem", "Tipo de instituição"]
+FATORES = ["Curso", "Tempo desde a conclusão", "UF de nascimento", "Tipo de instituição"]
 
 SEMENTE = 2026
 
@@ -54,12 +54,12 @@ def preparar(df: pd.DataFrame) -> Matriz:
     cursos = pd.get_dummies(df["Curso_de_Graduacao"].astype(str), prefix="curso", dtype=float)
     origens = pd.get_dummies(df["UF_Nascimento"].astype(str), prefix="origem", dtype=float)
     X = pd.concat([cursos, pd.DataFrame({"anos": df["Tempo_desde_Conclusao"].astype(float)}, index=df.index), origens, dummies], axis=1)
-    grupos = {"Curso": list(cursos.columns), "Anos de formado": ["anos"],
-              "Origem": list(origens.columns), "Tipo de instituição": list(dummies.columns)}
+    grupos = {"Curso": list(cursos.columns), "Tempo desde a conclusão": ["anos"],
+              "UF de nascimento": list(origens.columns), "Tipo de instituição": list(dummies.columns)}
     valores = pd.DataFrame({
         "Curso": df["Curso_de_Graduacao"].astype(str),
-        "Anos de formado": df["Tempo_desde_Conclusao"].astype(int),
-        "Origem": df["UF_Nascimento"].astype(str), "Tipo de instituição": tipo,
+        "Tempo desde a conclusão": df["Tempo_desde_Conclusao"].astype(int),
+        "UF de nascimento": df["UF_Nascimento"].astype(str), "Tipo de instituição": tipo,
     }, index=df.index)
     return Matriz(X=X, grupos=grupos, valores=valores)
 
